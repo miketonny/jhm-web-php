@@ -1,0 +1,45 @@
+.list_carousel { background:#efefef; }
+.caroufredsel_wrapper{ width:1100px!important; margin:0 auto !important; }
+.list_carousel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+.list_carousel li {
+	font-size: 40px;
+	color: #999;
+	text-align: center;
+	width:100%;
+	overflow:hidden;
+	padding: 0;
+	margin:0;
+	display: block;
+	float: left;
+}
+.list_carousel.responsive { width: auto; margin-left: 0; }
+.clearfix { float: none; clear: both; }
+.prev {
+	background:url(<?php echo siteUrl; ?>images/aerrow2_03.jpg) no-repeat scroll 0 0 transparent;
+	width:35px;
+	height:54px;
+	display:block;
+	cursor:pointer;
+	position:absolute;
+	margin:-197px 0 0 20px;
+}
+.next {
+	float: right;
+	margin:-185px 20px 0 0px;
+	background:url(<?php echo siteUrl; ?>images/aerrow3_03.jpg) no-repeat scroll 0 0 transparent;
+	width:35px;
+	height:54px;
+	cursor:pointer;
+	z-index:9999;
+	position:relative;
+}
+.pager { float: left; width: 300px;	text-align: center;	}
+.pager a { margin: 0 5px; text-decoration: none; }
+.pager a.selected { text-decoration: underline;	}
+.timer { height: 6px; width: 0px; }
+#usageContainer{ width:auto; }

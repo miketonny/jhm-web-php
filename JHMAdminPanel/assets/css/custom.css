@@ -1,0 +1,5 @@
+/* CSS Document */
+.nicEdit-main{ overflow:auto !important; height:300px !important; }
+.carousel-indicators li{ box-shadow: 0 0 5px 0 #333; }
+ul.chosen-choices li.search-choice span{ font-size:12px !important; }
+ul.chosen-results li.active-result{ font-size:13px !important; }

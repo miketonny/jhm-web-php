@@ -1,0 +1,100 @@
+DirectoryIndex index.php
+
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteCond %{SERVER_PORT} !=443
+RewriteCond %{HTTP_HOST} ^(www\.)?jhm\.co.nz$ [NC]
+RewriteRule ^$ https://www.jhm.co.nz%{REQUEST_URI} [R,L]
+
+RewriteRule promotionproduct/([\w-]+)/ category.php?promotion=$1
+RewriteRule userregister userlogin.php?type=register
+RewriteRule userlogin userlogin.php?type=login
+
+RewriteRule userlogout userlogout.php
+RewriteRule usereditprofile usereditprofile.php
+RewriteRule userdashboard userdashboard.php
+RewriteRule userchangepassword userchangepassword.php
+RewriteRule userrecommendation userrecommendation.php
+RewriteRule userorder userorder.php
+RewriteRule userPointHistory userPointHistory.php
+RewriteRule ^userOrderReturn/([\w-]+) userOrderReturn.php?odId=$1
+RewriteRule recentViewed recentViewed.php
+RewriteRule recommendProducts recommendProducts.php
+
+RewriteRule whats-new whatsNew.php
+RewriteRule deals deals.php
+RewriteRule brands brands.php
+
+Header add Access-Control-Allow-Origin "*"
+
+
+
+
+
+RewriteRule womens/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=female&data1=$1&data2=$2&data3=$3&data4=$4&data5=$5&data6=$6
+RewriteRule womens/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=female&data1=$1&data2=$2&data3=$3&data4=$4&data5=$5
+RewriteRule womens/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=female&data1=$1&data2=$2&data3=$3&data4=$4
+RewriteRule womens/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=female&data1=$1&data2=$2&data3=$3
+RewriteRule womens/([\w-]+)/([\w-]+) category.php?gender=female&data1=$1&data2=$2
+RewriteRule womens/([\w-]+) category.php?gender=female&data1=$1
+RewriteRule womens category.php?gender=female
+
+RewriteRule orderinfo/([\w-]+) orderinfo.php?odid=$1
+
+RewriteRule mens/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=male&data1=$1&data2=$2&data3=$3&data4=$4&data5=$5&data6=$6
+RewriteRule mens/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=male&data1=$1&data2=$2&data3=$3&data4=$4&data5=$5
+RewriteRule mens/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=male&data1=$1&data2=$2&data3=$3&data4=$4
+RewriteRule mens/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=male&data1=$1&data2=$2&data3=$3
+RewriteRule mens/([\w-]+)/([\w-]+) category.php?gender=male&data1=$1&data2=$2
+RewriteRule mens/([\w-]+) category.php?gender=male&data1=$1
+RewriteRule mens category.php?gender=male
+
+RewriteRule all/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=all&data1=$1&data2=$2&data3=$3&data4=$4&data5=$5&data6=$6
+RewriteRule all/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=all&data1=$1&data2=$2&data3=$3&data4=$4&data5=$5
+RewriteRule all/([\w-]+)/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=all&data1=$1&data2=$2&data3=$3&data4=$4
+RewriteRule all/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=all&data1=$1&data2=$2&data3=$3
+RewriteRule all/([\w-]+)/([\w-]+) category.php?gender=all&data1=$1&data2=$2
+RewriteRule all/([\w-]+) category.php?gender=all&data1=$1
+#RewriteRule all/ category.php?gender=all
+
+
+
+
+
+#---new copied from server--------------------------------------------------
+RewriteRule ^online-product/([\w-]+) category.php?alias=$1
+RewriteRule ^online-sale/([\w-]+) category.php?tag=$1
+RewriteRule ^online-product-search/([\w-]+) category.php?searchText=$1
+RewriteRule ^product-search/([\w-]+) category.php?searchText=$1
+RewriteRule product-search category.php
+
+#RewriteRule ^searchBrandProduct/([\w-]+)/([\w-]+)/([\w-]+) category.php?gender=all&brandslug=$1&searchByBrand=$2
+
+RewriteRule ^detail/([\w-]+) detail.php?alias=$1
+
+RewriteRule ^userPasswordResetSecureServerOnCloud/([\w-]+) userPasswordReset.php?userId=$1
+
+RewriteRule about static.php?type=about
+RewriteRule career static.php?type=career
+RewriteRule terms static.php?type=terms
+RewriteRule return static.php?type=return
+RewriteRule shipDetail static.php?type=shipping
+#RewriteRule payment static.php?type=payment
+RewriteRule accept_cards static.php?type=accept_cards
+RewriteRule cancellationReturn static.php?type=cancellationReturn
+RewriteRule faq static.php?type=faq
+RewriteRule contactUs contactUs.php
+
+RewriteRule checkout checkout.php
+RewriteRule checkOut checkout.php
+RewriteRule cart cart.php
+RewriteRule shipping shipping.php
+RewriteRule paymentProcess paymentProcess.php
+
+RewriteRule mywish wishlist.php
+RewriteRule my my.php
+
+RewriteRule ^success/([\w-]+) success.php?ordId=$1
+RewriteRule ^paypalSucc/([\w-]+) paypalSucc.php?ordId=$1
+RewriteRule ^paypalFail/([\w-]+) paypalFail.php?ordId=$1
