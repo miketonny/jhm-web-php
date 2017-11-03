@@ -496,8 +496,8 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'getMaleFemaleOnCategor
     ?>
     <input type="hidden" id="cartCounter" value="<?php echo $numCart; ?>" /> <?php
 } elseif (isset($_GET['action']) && $_GET['action'] == 'doProcess') {
-    $email = tres(str_rot13($_GET['data1']));
-    $password = tres($_GET['data2']);
+    $email = tres(str_rot13($_GET['data1']), $con);
+    $password = tres($_GET['data2'], $con);
     $point = 0;
     $optionBill = '<option value="">- SELECT BILLING INFORMATION -</option>';
     $optionShip = '<option value="">- SELECT SHIPPING INFORMATION -</option>';
@@ -640,52 +640,52 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'getMaleFemaleOnCategor
     $row = mysqli_fetch_object($rs);
     echo $row->slug;
 } elseif (isset($_GET['action']) && $_GET['action'] == 'contactUs') {
-    $fname = $_GET['fname'];
-    $lname = $_GET['lname'];
-    $email = $_GET['email'];
-    $type = $_GET['qtype'];
-    $desc = $_GET['desc'];
+ //    $fname = $_GET['fname'];
+ //    $lname = $_GET['lname'];
+ //    $email = $_GET['email'];
+ //    $type = $_GET['qtype'];
+ //    $desc = $_GET['desc'];
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo 0;
-        die();
-    }
+ //    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+ //        echo 0;
+ //        die();
+ //    }
 
-    $subject = 'A user want to contct you - JHM Shop';
-    $content = '<html>
-	<head>
-		<style>table tr td{ background:#ececec; padding: 7px; }</style>
-	</head>
-	<body>
-	<table cellpadding="5" cellspacing="5">
-		<tr>
-			<td colspan="2">A user want to contct you - JHM Shop</td>
-		</tr>
-		<tr>
-			<td><b>First Name</b></td>
-			<td>' . $fname . '</td>
-		</tr>
-		<tr>
-			<td><b>Last Name</b></td>
-			<td>' . $lname . '</td>
-		</tr>
-		<tr>
-			<td><b>Email Address</b></td>
-			<td>' . $email . '</td>
-		</tr>
-		<tr>
-			<td><b>Query Type</b></td>
-			<td>' . $type . '</td>
-		</tr>
-		<tr>
-			<td><b>Query</b></td>
-			<td>' . $desc . '</td>
-		</tr>
-	</table>
-	</body>
-	</body>';
-    sendMail($subject, $content, array('support@jhm.co.nz'));
-    echo 1;
+ //    $subject = 'User Enquiry from JHM Website';
+ //    $content = '<html>
+	// <head>
+	// 	<style>table tr td{ background:#ececec; padding: 7px; }</style>
+	// </head>
+	// <body>
+	// <table cellpadding="5" cellspacing="5">
+	// 	<tr>
+	// 		<td colspan="2">User Enquiry</td>
+	// 	</tr>
+	// 	<tr>
+	// 		<td><b>First Name</b></td>
+	// 		<td>' . $fname . '</td>
+	// 	</tr>
+	// 	<tr>
+	// 		<td><b>Last Name</b></td>
+	// 		<td>' . $lname . '</td>
+	// 	</tr>
+	// 	<tr>
+	// 		<td><b>Email Address</b></td>
+	// 		<td>' . $email . '</td>
+	// 	</tr>
+	// 	<tr>
+	// 		<td><b>Query Type</b></td>
+	// 		<td>' . $type . '</td>
+	// 	</tr>
+	// 	<tr>
+	// 		<td><b>Query</b></td>
+	// 		<td>' . $desc . '</td>
+	// 	</tr>
+	// </table>
+	// </body>
+	// </body>';
+ //    sendMail($subject, $content, array('info@jhm.co.nz'));
+ //    echo 1;
 }
 
 function getTempCartToUserCart($uid, $con) {

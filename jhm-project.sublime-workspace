@@ -24,74 +24,55 @@
 	"buffers":
 	[
 		{
-			"file": "category.php",
+			"file": "include/new_header.php",
 			"settings":
 			{
-				"buffer_size": 46609,
-				"encoding": "UTF-8",
+				"buffer_size": 16202,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "include/functions.php",
+			"contents": "",
 			"settings":
 			{
-				"buffer_size": 36210,
-				"line_ending": "Unix"
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Context",
+				"read_only": true,
+				"scratch": true
 			}
 		},
 		{
-			"file": "css/main.css",
+			"contents": "",
 			"settings":
 			{
-				"buffer_size": 29188,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
 			}
 		},
 		{
-			"file": "JHMAdminPanel/categoryTree.php",
+			"contents": "",
 			"settings":
 			{
-				"buffer_size": 4480,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Stack",
+				"read_only": true,
+				"scratch": true
 			}
 		},
 		{
-			"file": "userorder.php",
+			"contents": "=> C:\\GitHub\\MichaelZ-Personalstuff\\jhm\\action_model.php\n\t|+| 84\n=> C:\\GitHub\\MichaelZ-Personalstuff\\jhm\\userPasswordReset.php\n\t|+| 6\n",
 			"settings":
 			{
-				"buffer_size": 5121,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "userOrderReturn.php",
-			"settings":
-			{
-				"buffer_size": 2750,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "recentViewed.php",
-			"settings":
-			{
-				"buffer_size": 2340,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "recommendProducts.php",
-			"settings":
-			{
-				"buffer_size": 2044,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
+				"buffer_size": 134,
+				"line_ending": "Windows",
+				"name": "Xdebug Breakpoint",
+				"read_only": true,
+				"scratch": true
 			}
 		}
 	],
@@ -160,10 +141,24 @@
 	},
 	"expanded_folders":
 	[
-		"/C/xampp/htdocs/jhm"
+		"/C/GitHub/MichaelZ-Personalstuff/jhm",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include"
 	],
 	"file_history":
 	[
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/category.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/functions.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/css/main.css",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/action_model.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/new_header.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/.htaccess",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/userPasswordReset.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/new_footer.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/categoryTree.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/recentViewed.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/userorder.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/userOrderReturn.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/recommendProducts.php",
 		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/Xdebug Client/Xdebug.sublime-settings",
 		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/User/Xdebug.sublime-settings",
 		"/C/xampp/htdocs/jhm/include/new_header.php",
@@ -269,7 +264,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -283,6 +278,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"enscroll",
+			"jquery",
+			"enscroll",
+			"tag",
 			"context",
 			"tag",
 			"script",
@@ -417,45 +416,51 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "category.php",
-					"semi_transient": false,
+					"file": "include/new_header.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 46609,
+						"buffer_size": 16202,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								27923,
-								27923
+								287,
+								287
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 10354.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 1,
-					"file": "include/functions.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 36210,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -468,203 +473,106 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 237.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "css/main.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 29188,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								29048,
-								29048
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 19549.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "JHMAdminPanel/categoryTree.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4480,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1947,
-								1947
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 380.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "userorder.php",
+					"buffer": 2,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5121,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1668,
-								1668
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 627.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "userOrderReturn.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2750,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2465,
-								2483
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 608.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "recentViewed.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2340,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1605,
-								1605
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 418.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "recommendProducts.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2044,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1854,
-								1854
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 456.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
 		},
 		{
+			"selected": 0,
 			"sheets":
 			[
-			]
-		},
-		{
-			"sheets":
-			[
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 134,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								134,
+								134
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -708,7 +616,7 @@
 		"rows":
 		[
 			0.0,
-			0.64358974359,
+			0.7,
 			1.0
 		]
 	},
@@ -763,60 +671,35 @@
 			"hide_conflict": false,
 			"restore_index":
 			{
-				"16":
+				"26":
 				{
 					"group": 0,
 					"index": 0
 				},
-				"17":
+				"27":
 				{
 					"group": 0,
 					"index": 1
 				},
-				"18":
+				"28":
 				{
 					"group": 0,
 					"index": 2
 				},
-				"19":
+				"38":
 				{
 					"group": 0,
 					"index": 3
 				},
-				"20":
+				"39":
 				{
 					"group": 0,
 					"index": 4
 				},
-				"21":
+				"40":
 				{
 					"group": 0,
 					"index": 5
-				},
-				"22":
-				{
-					"group": 0,
-					"index": 6
-				},
-				"23":
-				{
-					"group": 0,
-					"index": 7
-				},
-				"24":
-				{
-					"group": 0,
-					"index": 8
-				},
-				"25":
-				{
-					"group": 0,
-					"index": 9
-				},
-				"29":
-				{
-					"group": 0,
-					"index": 10
 				}
 			},
 			"restore_layout":

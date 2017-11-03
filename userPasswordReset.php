@@ -2,7 +2,8 @@
 include "include/new_top.php";
 include "include/new_header.php";
 if (!isset($_GET['userId']) || $_GET['userId'] == '' || empty($_GET['userId'])) {redirect(siteUrl);die();}
-$user_id = str_replace('CurrentSecurityOnLevelNo', '', $_GET['userId']);
+// $user_id = str_replace('CurrentSecurityOnLevelNo', '', $_GET['userId']);
+$user_id = substr($_GET['userId'], 7);
 
 $userRs = exec_query("SELECT * FROM tbl_user WHERE user_id = '$user_id'", $con);
 if (!mysqli_num_rows($userRs)) {redirect(siteUrl);die();}

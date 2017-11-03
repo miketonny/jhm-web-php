@@ -86,7 +86,7 @@ if($isLogin){
                         <div>
                             
                             <button onclick="doProcess(loginEmail.value, loginPassword.value, '<?php echo siteUrl; ?>')" class="button" type="button" style="width:270px !important; margin:6px 0px 0px 0px !important; ">Login</button><br />
-                            <a href="#">Forgot your password?</a>
+                            <a >Forgot your password?</a>
                             <!-- onclick="chkLoginValues()" -->
                         </div>        
                     </div>

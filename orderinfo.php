@@ -30,9 +30,9 @@ $userId = $_SESSION['user'];
 							LEFT JOIN tbl_user tu ON tu.user_id = ord.user_id
 							WHERE ord.order_id = '".$_REQUEST['odid']."'
 							ORDER BY ord.order_id DESC";
-							$rs = mysql_query($query, $con);
-							$orderNo = getOrderId($orderId);
-							$row = mysql_fetch_object($rs); ?>
+							$rs = mysqli_query($con, $query);
+							$orderNo = getOrderId($orderId, $con);
+							$row = mysqli_fetch_object($rs); ?>
                     	<div id="popid<?php echo $orderNo; ?>" class="orderInfoWrapper" style="width:100%; left:45%; background:none; border:1px solid #d3d3d3; box-sizing:border-box; position:static; margin:0px; box-shadow:0px 0px; font-size:15px;">
 	<div>
         <div id="loginBox">
@@ -142,7 +142,7 @@ $userId = $_SESSION['user'];
 					$pricePromotionTotal = 0;
 					$pricePromoCodeTotal = 0;
 					$cart_total=0;
-					$gst = getGst();
+					$gst = getGst($con);
 					$ooii = 1;
                     $oiQuery = "SELECT toi.*, tp.product_name, tp.slug, tc.color, tbl_brand.brand_name FROM tbl_order_item toi
                     LEFT JOIN tbl_product tp ON tp.product_id = toi.product_id
@@ -152,7 +152,7 @@ $userId = $_SESSION['user'];
 					WHERE toi.order_id = '".$_REQUEST['odid']."'
                     GROUP BY toi.product_id, toi.color_id";
                     $oiRs = exec_query($oiQuery, $con);
-                    while($oiRow = mysql_fetch_object($oiRs)){
+                    while($oiRow = mysqli_fetch_object($oiRs)){
 												$pricePromotion = $oiRow->product_promo_price;
 												$pricePromoCode = $oiRow->product_promo_code_price;
 												$qty = $oiRow->od_qty;

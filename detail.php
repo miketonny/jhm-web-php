@@ -372,17 +372,25 @@ $isbackord = 0;
 <!-- choose signup type start top 50% -->
 <script>
 function chkUserType(){
-	document.getElementById('guestForm').style.display = 'none';
-	document.getElementById('normalForm').style.display = 'none';
+	if ($('#guestForm').length > 0) {
+		$('#guestForm').style.display = 'none';
+	}
+	if ($('#normalForm').length > 0) {
+		$('#normalForm').style.display = 'none';
+	}
+
 	guest = document.getElementById('guestRadio');
 	nor = document.getElementById('norRadio');
-
-	if(guest.checked == true){
+	if ($('#guestRadio').length > 0){
+		if(guest.checked == true){
 		document.getElementById('guestForm').style.display = 'block';
+		}
 	}
-	else if(nor.checked == true){
+	else if ($('#norRadio').length > 0) {
+		if(nor.checked == true){
 		document.getElementById('normalForm').style.display = 'block';
 	}
+	} 
 }
 </script>
 <style>

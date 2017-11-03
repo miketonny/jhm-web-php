@@ -2,7 +2,8 @@
 <?php include("include/new_header.php"); ?>
 <?php if(isset($_GET['ordId']) && $_GET['ordId'] != ''){ $orderId = $_GET['ordId']; }
 else{ redirect(siteUrl); die(); }
-$orderId = str_replace('orderId4xip', '', $orderId);
+// $orderId = str_replace('orderId4xip', '', $orderId);
+$orderId = substr($orderId, 7);
 
 $query = "SELECT ord.*, tu.email, CONCAT_WS(' ', tu.first_name, tu.last_name) AS uname,
 CONCAT_WS(' ', ord.od_shipping_first_name, ord.od_shipping_last_name) AS shipuname,
@@ -11,10 +12,10 @@ FROM tbl_order ord
 LEFT JOIN tbl_user tu ON tu.user_id = ord.user_id
 WHERE ord.order_id = '$orderId'
 ORDER BY ord.order_id DESC";
-$rs = mysql_query($query, $con);
-$row = mysql_fetch_object($rs);
+$rs = mysqli_query($con, $query);
+$row = mysqli_fetch_object($rs);
 $status = $row->status;
-$orderNo = getOrderId($orderId);
+$orderNo = getOrderId($orderId, $con);
 
 if($status == 0){ $oStatus = 'In Process'; }
 elseif($status == 1){ $oStatus = 'Dispatched'; }
@@ -116,7 +117,7 @@ elseif($status == 2){ $oStatus = 'Delivered'; }
 					$gstCalcTotal = 0;
 					$pricePromotionTotal = 0;
 					$pricePromoCodeTotal = 0;
-					$gst = getGst();
+					$gst = getGst($con);
 					$ooii = 1;
                                         //taslim//
                                         $totprice=0;
@@ -131,7 +132,7 @@ elseif($status == 2){ $oStatus = 'Delivered'; }
 					WHERE toi.order_id = '$orderId'
                     GROUP BY toi.product_id, toi.color_id";
                     $oiRs = exec_query($oiQuery, $con);
-                    while($oiRow = mysql_fetch_object($oiRs)){
+                    while($oiRow = mysqli_fetch_object($oiRs)){
 						$pricePromotion = $oiRow->product_promo_price;
 						$pricePromoCode = $oiRow->product_promo_code_price;
                         $qty = $oiRow->od_qty;

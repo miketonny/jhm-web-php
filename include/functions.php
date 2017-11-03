@@ -3,8 +3,8 @@ function tres($text, $con){ return trim(mysqli_real_escape_string($con,$text)); 
 /* fun for redirect */
 function redirect($location){ echo '<script>window.location.href="'.$location.'"</script>'; }
 /* funcs for set and get message */
-function setMessage1($message, $type){ $_SESSION['message'] = "<div id='alert_message_div' class='".$type."'><span>&#9658;</span> <span class='alert-message'>".$message."</span></div>"; }
-    function setMessage($message, $type) {
+// function setMessage1($message, $type){ $_SESSION['message'] = "<div id='alert_message_div' class='".$type."'><span>&#9658;</span> <span class='alert-message'>".$message."</span></div>"; }
+function setMessage($message, $type) {
     $_SESSION['message'] = "<div id='alert_message_div' class='".$type."'>$message</div>'";
 //    setTimeout(function() {
 //        $(".alert-success").fadeOut();
@@ -396,13 +396,13 @@ function getGst($con){
 }
 function sendMail($subject, $content, $emails){
 	$phpMailerSubject = $subject;
-	require './mail/PHPMailerAutoload.php';
+	require  SITE_ROOT.'/mail/PHPMailerAutoload.php';
 
 	$phpMailerText = $content;
 	foreach($emails AS $email){
 		if($email != ''){
 			$phpMailerTo = $email;
-			include 'mail/PHPMailerConfig.php';
+			include SITE_ROOT.'/mail/PHPMailerConfig.php';
 		}
 	}
 	//echo $phpMailerText; die();
@@ -599,13 +599,13 @@ function sendOrderMail($user_id, $orderId, $con){
 		$contentHTML = html_entity_decode($content);
 		$contentHTML = str_replace('{jhm :', '', $contentHTML); // replace all '{jhm : '
 
-		$orderNo = getOrderId($orderId);
+		$orderNo = getOrderId($orderId, $con);
 		$arraySearch = array(' username}', ' orderNo}', ' orderItem}', ' price}', ' delAddress}'); // isko replace krna h
 		$arrayReplace = array($data[0], $orderNo, $table, '$ '.formatCurrency(round($fAallTotal, 2, PHP_ROUND_HALF_UP)), $delAddress); // isse replace krna h
 
 		$content = str_replace($arraySearch, $arrayReplace, $contentHTML); // yha milega sb
 
-		$subject = 'Order Confirmation - Your Order('.getOrderId($orderId).') with JHM has been successfully placed.';
+		$subject = 'Order Confirmation - Your Order('.getOrderId($orderId, $con).') with JHM has been successfully placed.';
 
 		sendMail($subject, $content, array($email->email));
 	}
@@ -665,6 +665,10 @@ function logMessage($message, $con){
     mysqli_query($con, "INSERT INTO `eventlog` (Message) VALUES ('".$message."')");
 }
 
+function fetchRandomToken(){
+	return random_int(1000001, 9999999);
+}
+
 /* function for chk sll login, means secure */
 /*function ssl($securepage){
 	if ($_SERVER['HTTPS'] == 'on') {
@@ -685,4 +689,6 @@ function logMessage($message, $con){
         }
   	}
 }*/
+
+
 ?>

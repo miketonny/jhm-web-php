@@ -73,7 +73,7 @@ RewriteRule product-search category.php
 
 RewriteRule ^detail/([\w-]+) detail.php?alias=$1
 
-RewriteRule ^userPasswordResetSecureServerOnCloud/([\w-]+) userPasswordReset.php?userId=$1
+RewriteRule ^resetpassword/([\w-]+) userPasswordReset.php?userId=$1
 
 RewriteRule about static.php?type=about
 RewriteRule career static.php?type=career
@@ -98,3 +98,4 @@ RewriteRule my my.php
 RewriteRule ^success/([\w-]+) success.php?ordId=$1
 RewriteRule ^paypalSucc/([\w-]+) paypalSucc.php?ordId=$1
 RewriteRule ^paypalFail/([\w-]+) paypalFail.php?ordId=$1
+RewriteRule paymentfailed failure.php

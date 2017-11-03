@@ -80,13 +80,13 @@ function chkBillData(checkoutType, url){
 	bill_city = document.getElementById('bill_city').value;
 	//bill_lat == '' || bill_lng == ''
 	if(bill_email == '' || bill_first_name == '' || bill_last_name == '' || bill_phone == '' || billAddress == '' || bill_postal_code == '' || bill_locality == '' || bill_city == ''){
-		alert('Oops, Something is missing in Billing Information !');
+		alert('Something is missing in Billing Information');
 	}
 	else if(!chkValidEmail(bill_email)){
 		alert('Invalid Email Address !');
 	}
 	else if(checkoutType == 'register' && document.getElementById('bill_password').value == ''){
-		alert('Oops, Something is missing in Billing Information !');
+		alert('Something is missing in Billing Information');
 	}
 	else{
 		if(document.getElementById('shipToThis').checked || document.getElementById('sameAsBilling').checked){

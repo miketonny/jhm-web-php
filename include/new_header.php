@@ -1,4 +1,9 @@
-<script src="<?php echo siteUrl; ?>js/new/jquery.js"></script>
+<!-- <script src="<?php echo siteUrl; ?>js/new/jquery.js"></script> -->
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous">
+</script>
 <style>
     .suggest_link_over:hover{ color:#D93A40 !important; text-decoration:underline; background:#ececec; }
     .signupType{ display:none !important; }
@@ -168,8 +173,8 @@ $('body').click(function(e){
 //}
 //    
 </script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(function () {
         $("#headerSearch").autocomplete({
@@ -207,13 +212,14 @@ $('body').click(function(e){
                 return false;
             }
 
-        }).autocomplete("instance")._renderItem = function (ul, item) {
+        }).data( "ui-autocomplete" )._renderItem = function (ul, item) {
+            // console.log(item);
             document.getElementById('headerSearch').className = 'ui-autocomplete-input';
             if (item.name != 'No') {
                 return $("<li>").append("<a>" + item.name + "</a>").appendTo(ul);
-            }
-            else {
-                document.getElementById('headerSearch').className = 'ui-autocomplete-input';
+            } else {
+                return $("<li>").append("<a>No Result</a>").appendTo(ul);;
+                // document.getElementById('headerSearch').className = 'ui-autocomplete-input';
             }
         };
     });
@@ -278,7 +284,7 @@ if(@$_SESSION['message']!=""){
 
                         <?php } ?>
                         <li class="dropdown mycart">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <img src="<?php echo siteUrl; ?>images/list.png" > MY CART (<span class="cartno" id="cart_count"><?php echo (isset($cartNo)) ? $cartNo : '0'; ?></span>) </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <img src="<?php echo siteUrl; ?>images/list.png" > MY CART (<span class="cartno" id="cart_count"><?php echo (isset($cartNo)) ? $cartNo : '0'; ?></span>) </a>
                             <!-- shopping-cart-->
                             <ul class="dropdown-menu dropdown-cart" role="menu">
                                 <span id="shopingbag">

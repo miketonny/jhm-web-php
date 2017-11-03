@@ -26,9 +26,9 @@ UNION
 UNION
 (SELECT category_id AS id, category_name AS name, 'subsubCat' AS type FROM tbl_category WHERE ($catCondi) AND superparent_id != 0 AND parent_id != 0 LIMIT 0,10)
 ) AS temp"; // LIMIT 0, 15 ORDER BY RAND()
-$rs = mysql_query($q, $con);
-if(mysql_num_rows($rs)){
-	while($row = mysql_fetch_object($rs)){
+$rs = mysqli_query($con, $q);
+if(mysqli_num_rows($rs)){
+	while($row = mysqli_fetch_object($rs)){
 		$url = '';
 		$type = $row->type;
 		$name = $row->name;
@@ -36,9 +36,9 @@ if(mysql_num_rows($rs)){
 		$str = '';
 		if($type == 'product'){
 			/* fetch category name of product */
-			$catRs = mysql_query("SELECT tc.category_name, tp.product_name, tp.product_id, tp.slug, tpcol.color_id FROM tbl_product_category tpc LEFT JOIN tbl_category tc ON tc.category_id = tpc.category_id LEFT JOIN tbl_product tp ON tp.product_id = tpc.product_id LEFT JOIN tbl_product_color tpcol ON tpcol.product_id = tp.product_id WHERE tpc.product_id = '$id'", $con);
-			if(mysql_num_rows($catRs) > 0){
-				while($proData = mysql_fetch_object($catRs)){
+			$catRs = mysqli_query($con, "SELECT tc.category_name, tp.product_name, tp.product_id, tp.slug, tpcol.color_id FROM tbl_product_category tpc LEFT JOIN tbl_category tc ON tc.category_id = tpc.category_id LEFT JOIN tbl_product tp ON tp.product_id = tpc.product_id LEFT JOIN tbl_product_color tpcol ON tpcol.product_id = tp.product_id WHERE tpc.product_id = '$id'");
+			if(mysqli_num_rows($catRs) > 0){
+				while($proData = mysqli_fetch_object($catRs)){
 					$name1='';
 					//$str = $proData->product_name;
 					$catName = $proData->category_name;
@@ -62,8 +62,8 @@ if(mysql_num_rows($rs)){
 		}
 		elseif($type == 'mainCat' || $type == 'subCat' || $type == 'subsubCat'){
 			/* fetch product name of typed category */
-			$proRs = mysql_query("SELECT tp.product_name, tp.product_id FROM tbl_product_category tpc LEFT JOIN tbl_product tp ON tp.product_id = tpc.product_id WHERE tpc.category_id = '$id'", $con);
-			while($proData = mysql_fetch_object($proRs)){
+			$proRs = mysqli_query($con, "SELECT tp.product_name, tp.product_id FROM tbl_product_category tpc LEFT JOIN tbl_product tp ON tp.product_id = tpc.product_id WHERE tpc.category_id = '$id'");
+			while($proData = mysqli_fetch_object($proRs)){
 				if(isset($proData->product_name) && $proData->product_name != ''){
 					$name1='';
 					$str = $proData->product_name;
@@ -82,8 +82,8 @@ if(mysql_num_rows($rs)){
 		}
 		elseif($type == 'brand'){
 			/* fetch category on brand */
-			$catRs = mysql_query("SELECT tc.category_name, tc.category_id FROM tbl_product_category tpc LEFT JOIN tbl_product tp ON tp.product_id = tpc.product_id LEFT JOIN tbl_category tc ON tc.category_id = tpc.category_id WHERE tp.brand_id = '$id' GROUP BY tpc.category_id", $con);
-			while($catData = mysql_fetch_object($catRs)){
+			$catRs = mysqli_query($con, "SELECT tc.category_name, tc.category_id FROM tbl_product_category tpc LEFT JOIN tbl_product tp ON tp.product_id = tpc.product_id LEFT JOIN tbl_category tc ON tc.category_id = tpc.category_id WHERE tp.brand_id = '$id' GROUP BY tpc.category_id");
+			while($catData = mysqli_fetch_object($catRs)){
 				if(isset($catData->category_name) && $catData->category_name != ''){
 					$name1='';
 					$str = ' in <b>'.$catData->category_name.'</b>';

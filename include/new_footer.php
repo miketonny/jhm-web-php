@@ -65,7 +65,7 @@
 <script src="<?php echo siteUrl; ?>/js/new/bootstrap.min.js"></script>
 <script src="<?php echo siteUrl; ?>/js/new/bootstrap-select.js"></script>
 <script src="<?php echo siteUrl; ?>/js/new/main.js"></script>
-<script src="<?php echo siteUrl; ?>js/new/enscroll-0.6.0.min.js"></script>
+<script src="<?php echo siteUrl; ?>js/new/enscroll-0.6.2.min.js"></script>
 <script>
 $(document).ready(function(){
     $(".mega-dropdown").hover(            

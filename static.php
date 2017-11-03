@@ -3,7 +3,7 @@
 <?php 
 if(!isset($_GET['type'])){ redirect(siteUrl); die(); }
 $type = $_GET['type'];
-$data = mysql_fetch_object(exec_query("SELECT * FROM tbl_manage WHERE type = '$type'", $con));
+$data = mysqli_fetch_object(exec_query("SELECT * FROM tbl_manage WHERE type = '$type'", $con));
 if($data->type == 'about'){ $h = 'About Us'; }
 elseif($data->type == 'terms'){ $h = 'Terms & Conditions'; }
 elseif($data->type == 'career'){ $h = 'Career'; }

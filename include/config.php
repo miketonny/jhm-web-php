@@ -17,18 +17,22 @@ define('paypalId', 'pixl.pawan@gmail.com');
 define('siteLang', 'English');
 /* no of p[roduct in 1 group , on category page */
 define('noOfProductInGroup', 28);
+define('SITE_ROOT', dirname(str_replace('\\', '/', __DIR__))); //define site root path
 /* function for chk sll login, means secure */
-function ssl($securepage){
-	/*if ($_SERVER['HTTPS'] == 'on') { // we are on a secure page.
+if (!function_exists('ssl')) {
+  function ssl($securepage){
+  /*if ($_SERVER['HTTPS'] == 'on') { // we are on a secure page.
         if (!$securepage) { // but we shouldn't be!
-          	$url = str_replace('/', '', siteUrl).$_SERVER['REQUEST_URI'];
-          	header('location: '.$url); exit;
+            $url = str_replace('/', '', siteUrl).$_SERVER['REQUEST_URI'];
+            header('location: '.$url); exit;
         }
-  	} else { // we aren't on a secure page.
+    } else { // we aren't on a secure page.
         if ($securepage) { // but we should be!
-          	$url = str_replace('/', '', siteSecureUrl).$_SERVER['REQUEST_URI'];
-          	header('location: '.$url); exit;
+            $url = str_replace('/', '', siteSecureUrl).$_SERVER['REQUEST_URI'];
+            header('location: '.$url); exit;
         }
-  	}*/
+    }*/
 }
+}
+
 //ssl(1); ?>

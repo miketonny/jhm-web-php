@@ -29,7 +29,7 @@ $query = "SELECT ord.*, tu.email, CONCAT_WS(' ', tu.first_name, tu.last_name) AS
 							(SELECT COUNT(toi.order_item_id) FROM tbl_order_item toi WHERE toi.order_id = ord.order_id) AS items
 							FROM tbl_order ord
 							LEFT JOIN tbl_user tu ON tu.user_id = ord.user_id
-							WHERE ord.user_id = '$userId'
+							WHERE ord.user_id = '$userId' and ord.payment_status = 'Paid'
 							ORDER BY ord.order_id DESC";
 $rs = mysqli_query($con, $query);
 while ($row = mysqli_fetch_object($rs)) {

@@ -63,8 +63,9 @@
                             </tr>
                             <tr>
                                 <td colspan="2" align="center";>
-                                	<input type="button" value="Submit" class="button_address" onclick="submitContact();" />
+                                	<!-- <input type="hidden" value="Submit"/> -->
                                     <input type="hidden" name="action" value="contactUs" />
+                                    <input type="submit" name="submit" value="Submit"  class="button_address" />
                                 </td>
                             </tr>
                         </table>
@@ -84,36 +85,40 @@
 
 <?php include("include/new_footer.php"); ?>
 <script>
-function submitContact(){
-	fname = document.getElementById('fname').value;
-	lname = document.getElementById('lname').value;
-	qtype = document.getElementById('qtype').value;
-	email = document.getElementById('email').value;
-	desc = document.getElementById('desc').value;
+// function submitContact(){
+// 	fname = document.getElementById('fname').value;
+// 	lname = document.getElementById('lname').value;
+// 	qtype = document.getElementById('qtype').value;
+// 	email = document.getElementById('email').value;
+// 	desc = document.getElementById('desc').value;
 	
-	if(fname == '' || lname == '' || qtype == '' || email == '' || desc == ''){
-		alert('Oops! Something is missing.');
-	}
-	else{
-		var xmlhttp;
-		if(window.XMLHttpRequest){ xmlhttp = new XMLHttpRequest(); }
-		else{ xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
-		xmlhttp.onreadystatechange = function(){
-			if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-				if(xmlhttp.responseText == 0){
-					setMessage('Failed! Invalid Email Address.', 'alert alert-error');
-				}
-				else{
-					setMessage('Thanks for contacting us. We will reply you soon.', 'alert alert-success');
-				}
-				// setmessage defined in header
-			}
-		}
-		desc = encodeURIComponent(desc);
-		xmlhttp.open("GET", "<?php echo siteUrl; ?>ajax.php?action=contactUs&fname="+fname+"&lname="+lname+"&qtype="+qtype+"&email="+email+"&desc="+desc+"&dataTempId=c3v7fa153302ded0hc314ld1f21679.cloud.uk", true);
-		xmlhttp.send();
-	}
-}
+// 	if(fname == '' || lname == '' || qtype == '' || email == '' || desc == ''){
+// 		alert('Please fill in all the required fields.');
+// 	}
+// 	else{
+// 		var xmlhttp;
+// 		if(window.XMLHttpRequest){ xmlhttp = new XMLHttpRequest(); }
+// 		else{ xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
+// 		xmlhttp.onreadystatechange = function(){
+// 			if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+// 				if(xmlhttp.responseText == 0){
+// 					//setMessage('Invalid Email Address.', 'alert alert-error');
+//                     alert('Invalid Email Address');
+// 				}
+// 				else{
+//                     // function setMessage($message, $type) {
+//                         // $_SESSION['message'] = "<div id='alert_message_div' class='alert alert-success'>Thanks for contacting us. We will get back to you soon.</div>'";
+//                     // }
+// 					// setMessage('Thanks for contacting us. We will get back to you soon.', 'alert alert-success');
+// 				}
+// 				// setmessage defined in header
+// 			}
+// 		}
+// 		desc = encodeURIComponent(desc);
+// 		xmlhttp.open("GET", "<?php echo siteUrl; ?>ajax.php?action=contactUs&fname="+fname+"&lname="+lname+"&qtype="+qtype+"&email="+email+"&desc="+desc+"&dataTempId=c3v7fa153302ded0hc314ld1f21679.cloud.uk", true);
+// 		xmlhttp.send();
+// 	}
+// }
 </script>
 
 <?php include("include/new_bottom.php"); ?>

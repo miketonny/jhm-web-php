@@ -755,8 +755,11 @@ $brandQ = "SELECT * FROM tbl_brand WHERE brand_img != '' AND flag=1 ORDER BY bra
         var loading = false; //to prevents multipal ajax loads
         var no = <?php echo getNoOfProductOnCategoryPage($con); ?>;
         //display accordion after page load
-          var accc = document.getElementById('accordion');
+        if ($('#accordion').length > 0 ) {
+        var accc = document.getElementById('accordion');
     		accc.style.display = "";    
+        }
+       
           $( function() {
 		    $( "#accordion" ).accordion({
 		    	autoHeight: false,

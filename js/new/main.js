@@ -20,7 +20,7 @@ jQuery(function($) {
 	});
 
 	//portfolio
-	$(window).load(function(){
+	$(window).on('load',function(){
 //		$portfolio_selectors = $('.portfolio-filter >li>a');
 //		if($portfolio_selectors!='undefined'){
 //			$portfolio = $('.portfolio-items');

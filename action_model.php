@@ -56,6 +56,8 @@ case 'productRating':productRating($con);
 	break;
 case 'askAQuestion':askAQuestion($con);
 	break;
+case 'contactUs':ContactUs();
+	break;
 
 default:redirect(siteUrl);
 }
@@ -81,7 +83,8 @@ function userForgetPassword($con) {
 	if (mysqli_num_rows($rs)) {
 		$userData = mysqli_fetch_object($rs);
 
-		$link = siteUrl . 'userPasswordResetSecureServerOnCloud/CurrentSecurityOnLevelNo' . $userData->user_id . '';
+		$token = fetchRandomToken();
+		$link = siteUrl . 'resetpassword/' . $token . $userData->user_id . ''; //adds the randomness to the url
 		$rsEmail = exec_query("SELECT * FROM tbl_email_template WHERE type = 'resetPassword'", $con);
 		$rowEmail = mysqli_fetch_object($rsEmail);
 		$content = $rowEmail->content;
@@ -97,6 +100,8 @@ function userForgetPassword($con) {
 	} else {setMessage('The email address you entered does not exist.', 'alert alert-error');}
 	echo '<script> history.back(); </script>';die();
 }
+
+
 
 function userSignUpFromDetailExpressCheckout($con) {
 	$email = $_POST['email'];
@@ -1175,5 +1180,56 @@ function getTempCartToUserCart($uid, $con) {
 		}
 		unset($_SESSION['tempUser']);
 	}
+}
+
+function ContactUs(){
+	$fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $email = $_POST['email'];
+    $type = $_POST['qtype'];
+    $desc = $_POST['desc'];
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {	 
+	 	setMessage('Invalid email address.', 'alert alert-error');
+	 	redirect(siteUrl);
+	 	die();
+    }
+
+    $subject = 'User Enquiry from JHM Website';
+    $content = '<html>
+	<head>
+		<style>table tr td{ background:#ececec; padding: 7px; }</style>
+	</head>
+	<body>
+	<table cellpadding="5" cellspacing="5">
+		<tr>
+			<td colspan="2">User Enquiry</td>
+		</tr>
+		<tr>
+			<td><b>First Name</b></td>
+			<td>' . $fname . '</td>
+		</tr>
+		<tr>
+			<td><b>Last Name</b></td>
+			<td>' . $lname . '</td>
+		</tr>
+		<tr>
+			<td><b>Email Address</b></td>
+			<td>' . $email . '</td>
+		</tr>
+		<tr>
+			<td><b>Query Type</b></td>
+			<td>' . $type . '</td>
+		</tr>
+		<tr>
+			<td><b>Query</b></td>
+			<td>' . $desc . '</td>
+		</tr>
+	</table>
+	</body>
+	</body>';
+    sendMail($subject, $content, array('info@jhm.co.nz'));
+  	setMessage('Thanks for contacting us. We will get back to you soon.', 'alert alert-success');
+	redirect(siteUrl);die();
 }
 ?>
