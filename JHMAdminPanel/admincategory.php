@@ -21,8 +21,8 @@
 						(SELECT category_name FROM tbl_category WHERE tbl_category.category_id = tc.parent_id) AS parentCat,
 						(SELECT category_name FROM tbl_category WHERE tbl_category.category_id = tc.superparent_id) AS superParentCat
 						FROM tbl_category tc ORDER BY tc.category_name";
-						$rs_cat = mysql_query($query, $con);
-						while($row_cat = mysql_fetch_object($rs_cat)){
+						$rs_cat = mysqli_query($con, $query);
+						while($row_cat = mysqli_fetch_object($rs_cat)){
 						?>
 							<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 								<td><?php echo $i; ?></td>

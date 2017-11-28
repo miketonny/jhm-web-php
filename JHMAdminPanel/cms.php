@@ -1,10 +1,10 @@
 <?php include 'include/header.php';
 //$emailTemp = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'emailTemplate'", $con))->content;
-$about = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'about'", $con))->content;
-$terms = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'terms'", $con))->content;
-$career = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'career'", $con))->content;
-$return = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'return'", $con))->content;
-$shipping = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'shipping'", $con))->content;
+$about = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'about'", $con))->content;
+$terms = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'terms'", $con))->content;
+$career = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'career'", $con))->content;
+$return = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'return'", $con))->content;
+$shipping = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'shipping'", $con))->content;
 ?>
 <style>
 #cke_1_contents, #cke_2_contents, #cke_3_contents, #cke_4_contents, #cke_5_contents{ height:420px !important; }

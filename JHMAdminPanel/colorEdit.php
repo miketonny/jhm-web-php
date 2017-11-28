@@ -6,7 +6,7 @@ $slug = $_GET['dataLast2'];
 $brand = getBrand(array('brand_name'), $id, $con);
 
 $col_rs = exec_query("SELECT * FROM tbl_color WHERE color_id = '$colId'", $con);
-$roww = mysql_fetch_object($col_rs);
+$roww = mysqli_fetch_object($col_rs);
 ?>
 <style>.my{ margin-bottom:5px; width:200px; }</style>
 <link rel="stylesheet" href="assets/css/farbtastic.css" type="text/css" />

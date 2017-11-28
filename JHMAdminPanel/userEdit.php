@@ -1,7 +1,7 @@
 <?php include 'include/header.php';
 chkParam($_GET['data1'], 'home.php');
 $id = $_GET['data1'];
-$user = mysql_fetch_object(exec_query("SELECT * FROM tbl_user WHERE user_id = '$id'", $con));
+$user = mysqli_fetch_object(exec_query("SELECT * FROM tbl_user WHERE user_id = '$id'", $con));
 ?>
         <div class="warper container-fluid">
             <div class="page-header"> <h1>Customer <small>Edit Customer</small></h1> </div>
@@ -85,8 +85,8 @@ $user = mysql_fetch_object(exec_query("SELECT * FROM tbl_user WHERE user_id = '$
                                     <div class="col-sm-5">
 										<select class="form-control" name="country" required>
 											<option value="">- SELECT COUNTRY -</option>
-                                            <?php $country_rs = mysql_query("SELECT country_id, country_name FROM tbl_country ORDER BY country_name", $con);
-											while($country_row = mysql_fetch_object($country_rs)){ ?>
+                                            <?php $country_rs = mysqli_query($con, "SELECT country_id, country_name FROM tbl_country ORDER BY country_name");
+											while($country_row = mysqli_fetch_object($country_rs)){ ?>
 												<option <?php getSelected($user->country_id, $country_row->country_id); ?> value="<?php echo $country_row->country_id; ?>"><?php echo $country_row->country_name; ?></option>
 											<?php }	?>
 										</select>

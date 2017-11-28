@@ -33,11 +33,11 @@
 							LEFT JOIN tbl_user tu ON tu.user_id = ord.user_id
                             WHERE ord.isbackOrd=0
 							ORDER BY ord.order_id DESC";
-							$rs = mysql_query($query, $con);
-							while($row = mysql_fetch_object($rs)){
+							$rs = mysqli_query($con, $query);
+							while($row = mysqli_fetch_object($rs)){
 								$orderId = $row->order_id;
 								$status = $row->status;
-								$orderNo = getOrderId($orderId);
+								$orderNo = getOrderId($orderId, $con);
 							?>
 								<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 									<td><?php echo $i; ?></td>
@@ -271,7 +271,7 @@
                                         WHERE toi.order_id = '$orderId' and toi.isbackOrd=0
                                         GROUP BY toi.product_id, toi.color_id";
                                         $oiRs = exec_query($oiQuery, $con);
-                                        while($oiRow = mysql_fetch_object($oiRs)){
+                                        while($oiRow = mysqli_fetch_object($oiRs)){
 												$pricePromotion = $oiRow->product_promo_price;
 												$pricePromoCode = $oiRow->product_promo_code_price;
 												$qty = $oiRow->od_qty;

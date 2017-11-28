@@ -17,8 +17,8 @@
 						<?php
 						$i = 1;
 						$query = "SELECT * FROM admin WHERE atype = 1";
-						$rs_ad = mysql_query($query, $con);
-						while($row_ad = mysql_fetch_object($rs_ad)){
+						$rs_ad = mysqli_query($con, $query);
+						while($row_ad = mysqli_fetch_object($rs_ad)){
 						?>
 							<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 								<td><?php echo $i; ?></td>

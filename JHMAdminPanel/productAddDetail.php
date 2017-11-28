@@ -34,8 +34,8 @@ if(isset($_GET['dataCopy']) && $_GET['dataCopy'] != ''){
 								LEFT JOIN tbl_product_price tpp ON tpp.color_id = tpc.color_id
 								WHERE tpc.product_id = '$idCopy' AND tpc.color_code = '$value'";
 								$rsCopyProColor = exec_query($copyProq, $con);
-								if(mysql_num_rows($rsCopyProColor)){
-									$copyProColor = mysql_fetch_object($rsCopyProColor);
+								if(mysqli_num_rows($rsCopyProColor)){
+									$copyProColor = mysqli_fetch_object($rsCopyProColor);
 									$copyPrice = $copyProColor->product_price;
 									$copyRrp = $copyProColor->product_rrp;
 									$copyColorId = $copyProColor->color_id;

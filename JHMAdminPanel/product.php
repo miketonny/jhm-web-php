@@ -391,7 +391,7 @@ if(isset($prefData->columns)){
                             <?php } ?>
                             
                             <?php if($productPerm['edit']){ ?>
-                            <button type="button" onClick="window.open('http://jhm.co.nz/JHMAdminPanel/productEdit.php?data1=<?php echo $row_pro->product_id; ?>&data2=<?php echo $row_pro->slug; ?>')" class="btn btn-info btn-xs">View</button>
+                            <button type="button" onClick="window.open('<?php echo siteUrl; ?>JHMAdminPanel/productEdit.php?data1=<?php echo $row_pro->product_id; ?>&data2=<?php echo $row_pro->slug; ?>')" class="btn btn-info btn-xs">View</button>
                             <?php } ?>
                             
 							<?php if($productPerm['status']){

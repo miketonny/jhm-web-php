@@ -1,7 +1,7 @@
 <?php include 'include/header.php';
 chkParam($_GET['data1'], 'home.php');
 $id = $_GET['data1'];
-$row = mysql_fetch_object(exec_query("SELECT * FROM tbl_shipping_sector WHERE recid = '$id'", $con));
+$row = mysqli_fetch_object(exec_query("SELECT * FROM tbl_shipping_sector WHERE recid = '$id'", $con));
 ?>
         <div class="warper container-fluid">
             <div class="page-header"><h1>Manage Shipping <small> Edit Shipping Sector</small></h1></div>

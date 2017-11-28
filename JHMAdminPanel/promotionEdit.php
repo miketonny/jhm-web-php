@@ -1,8 +1,8 @@
 <?php include 'include/header.php';
 $id = $_GET['data1'];
-$coup = mysql_fetch_object(exec_query("SELECT * FROM tbl_promotion WHERE promo_id = '$id'", $con));
+$coup = mysqli_fetch_object(exec_query("SELECT * FROM tbl_promotion WHERE promo_id = '$id'", $con));
 if($coup->promo_type != 'allPro'){
-	$coupDetail = mysql_fetch_object(exec_query("SELECT * FROM tbl_promotion_detail WHERE promo_id = '$id'", $con));
+	$coupDetail = mysqli_fetch_object(exec_query("SELECT * FROM tbl_promotion_detail WHERE promo_id = '$id'", $con));
 	if($coup->promo_type == 'allCat'){ $str = 'Categories'; }
 	elseif($coup->promo_type == 'allBrand'){ $str = 'Brands'; }
 	elseif($coup->promo_type == 'parPro'){ $str = 'Products'; }
@@ -56,7 +56,7 @@ $sel = 'selected="selected"';
 											<option value=""></option>
 											<?php
 											$cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-											while($cat_row = mysql_fetch_object($cat_rs)){ ?>
+											while($cat_row = mysqli_fetch_object($cat_rs)){ ?>
 												<option <?php if(in_array($cat_row->category_id, $catArr)){ echo $sel; }?> value="<?php echo $cat_row->category_id;?>"><?php echo $cat_row->category_name;?></option>
 											<?php }?>
 										</select>
@@ -105,7 +105,7 @@ $sel = 'selected="selected"';
 											<option value=""></option>
 											<?php
 											$cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-											while($cat_row = mysql_fetch_object($cat_rs)){ ?>
+											while($cat_row = mysqli_fetch_object($cat_rs)){ ?>
 												<option <?php if(in_array($cat_row->category_id, $catArr)){ echo $sel; }?> value="<?php echo $cat_row->category_id;?>"><?php echo $cat_row->category_name;?></option>
 											<?php }?>
 										</select>
@@ -135,7 +135,7 @@ $sel = 'selected="selected"';
 										<select class="form-control chosen-select" required name="brand[]" id="brandSel" data-placeholder="SELECT BRAND" multiple>
 											<option value=""></option>
 											<?php $br_rs = exec_query("SELECT * FROM tbl_brand ORDER BY brand_name", $con);
-											while($br_row = mysql_fetch_object($br_rs)){ ?>
+											while($br_row = mysqli_fetch_object($br_rs)){ ?>
 												<option <?php if(in_array($br_row->brand_id, $brArr)){ echo $sel; } ?>  value="<?php echo $br_row->brand_id; ?>"><?php echo $br_row->brand_name; ?></option>
 											<?php }?>
 										</select>
@@ -156,7 +156,7 @@ $sel = 'selected="selected"';
 											<option value=""></option>
 											<?php
 											$cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-											while($cat_row = mysql_fetch_object($cat_rs)){
+											while($cat_row = mysqli_fetch_object($cat_rs)){
 												echo '<option value="'.$cat_row->category_id.'">'.$cat_row->category_name.'</option>';
 											}?>
 										</select>

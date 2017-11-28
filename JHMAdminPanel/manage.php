@@ -1,9 +1,9 @@
 <?php include 'include/header.php';
-$emailTemp = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'emailTemplate'", $con))->content;
-$about = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'about'", $con))->content;
-$terms = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'terms'", $con))->content;
-$career = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'career'", $con))->content;
-$return = mysql_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'return'", $con))->content;
+$emailTemp = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'emailTemplate'", $con))->content;
+$about = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'about'", $con))->content;
+$terms = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'terms'", $con))->content;
+$career = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'career'", $con))->content;
+$return = mysqli_fetch_object(exec_query("SELECT content FROM tbl_manage WHERE type = 'return'", $con))->content;
 ?>
 <div class="warper container-fluid">
     <div class="page-header"><h1>Manage <small>Manage Site</small></h1></div>

@@ -33,7 +33,7 @@
 						$rs = $pager->paginate();
                 		if($rs){ //$rs = mysql_query($query, $con);
 							if(isset($_GET['page'])){ $i = ($pagePro * $_GET['page'] - $pagePro) + 1; }
-							while($row = mysql_fetch_object($rs)){
+							while($row = mysqli_fetch_object($rs)){
 							?>
 								<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 									<td><?php echo $i; ?></td>

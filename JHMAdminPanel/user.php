@@ -22,8 +22,8 @@
 							<?php
 							$i = 1;
 							$query = "SELECT tbl_user.*, tbl_country.country_name FROM tbl_user LEFT JOIN tbl_country ON tbl_country.country_id = tbl_user.country_id ORDER BY user_id";
-							$rs = mysql_query($query, $con);
-							while($row = mysql_fetch_object($rs)){ $img = $row->img; ?>
+							$rs = mysqli_query($con, $query);
+							while($row = mysqli_fetch_object($rs)){ $img = $row->img; ?>
 								<tr <?php if(($i%2) == 0){ echo 'class="info"'; } ?>>
 									<td><?php echo $i; ?></td>
 									<td align="center"><?php

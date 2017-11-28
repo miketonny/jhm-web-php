@@ -27,7 +27,7 @@ $brand = getBrand(array('brand_name'), $id, $con);
                                         <?php
                                         $i = 1;
                                         $col_rs = exec_query("SELECT * FROM tbl_color WHERE brand = '$id' ORDER BY color", $con);
-                                        while ($col_row = mysql_fetch_object($col_rs)) {
+                                        while ($col_row = mysqli_fetch_object($col_rs)) {
                                             ?>
                                             <tr>
                                                 <td>

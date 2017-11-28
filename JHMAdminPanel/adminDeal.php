@@ -1,7 +1,7 @@
 <?php include 'include/header.php';
-$noDeal1 = mysql_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'dealsTopOffer'", $con));
-$noDeal2 = mysql_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'dealsSuper'", $con));
-$imgBanner = mysql_fetch_object(exec_query("SELECT other FROM tbl_config WHERE type = 'dealBanner'", $con));
+$noDeal1 = mysqli_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'dealsTopOffer'", $con));
+$noDeal2 = mysqli_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'dealsSuper'", $con));
+$imgBanner = mysqli_fetch_object(exec_query("SELECT other FROM tbl_config WHERE type = 'dealBanner'", $con));
 ?>
 <style> .low-widd{ width:30% !important; } </style>
 <div class="warper container-fluid">
@@ -130,8 +130,8 @@ $imgBanner = mysql_fetch_object(exec_query("SELECT other FROM tbl_config WHERE t
                 SELECT * FROM(
                     (SELECT tp.promo_id AS mainPId, tp.title, tp.is_super, tp.promo_type, tp.percent_or_amount, tp.promo_value, tp.start_date, tp.end_date, tp.created_on, tp.is_publish, 0 AS min_cart_value, 0 AS promo_code, 'tbl_promotion' AS ttable, 0 AS ids, 0 AS category_id FROM tbl_promotion tp)
                 ) AS temp ORDER BY created_on DESC";
-                $rs_c = mysql_query($query, $con);
-                while($row_c = mysql_fetch_object($rs_c)){
+                $rs_c = mysqli_query($con, $query);
+                while($row_c = mysqli_fetch_object($rs_c)){
                     $ct = $row_c->promo_type;
                     $stat = $row_c->is_publish;
                     $isExpire = false;
@@ -174,7 +174,7 @@ $imgBanner = mysql_fetch_object(exec_query("SELECT other FROM tbl_config WHERE t
                     /* if tbl is promotion, then fetch data from other table */
                         if($row_c->ttable == 'tbl_promotion'){
                             $pro_det_rs = exec_query("SELECT * FROM tbl_promotion_detail WHERE promo_id = '$row_c->mainPId'", $con);
-                            $pro_det_row = mysql_fetch_object($pro_det_rs);
+                            $pro_det_row = mysqli_fetch_object($pro_det_rs);
                             $idss = $pro_det_row->ids;
                             $catt = $pro_det_row->category_id;
                         }
@@ -195,14 +195,14 @@ $imgBanner = mysql_fetch_object(exec_query("SELECT other FROM tbl_config WHERE t
                         
                         if($idss != ''){
                             $dataRs = exec_query("SELECT $colName FROM $table WHERE $col IN ($idss)", $con);
-                            while($dataRow = mysql_fetch_object($dataRs)){
+                            while($dataRow = mysqli_fetch_object($dataRs)){
                                 $dataName .= $dataRow->$colName.', ';
                             }
                         }
                         
                         if($isCat && $catt != ''){
                             $catdataRs = exec_query("SELECT category_name FROM tbl_category WHERE category_id IN ($catt)", $con);
-                            while($catdataRow = mysql_fetch_object($catdataRs)){
+                            while($catdataRow = mysqli_fetch_object($catdataRs)){
                                 $catdataName .= $catdataRow->category_name.', ';
                             }
                         }

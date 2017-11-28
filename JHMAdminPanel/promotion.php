@@ -38,8 +38,8 @@
 							UNION
 							(SELECT tpc.recid AS mainPId, tpc.title, tpc.promo_type, tpc.percent_or_amount, tpc.promo_value, tpc.start_date, tpc.end_date, tpc.created_on, tpc.is_publish, tpc.min_cart_value, tpc.promo_code, 'tbl_promo_code' AS ttable, tpc.ids AS ids, tpc.category_id FROM tbl_promo_code tpc WHERE tpc.promo_value != 0 AND tpc.promo_code != '')
 						) AS temp ORDER BY created_on DESC";
-						$rs_c = mysql_query($query, $con);
-						while($row_c = mysql_fetch_object($rs_c)){
+						$rs_c = mysqli_query($con, $query);
+						while($row_c = mysqli_fetch_object($rs_c)){
 							$ct = $row_c->promo_type;
 							$stat = $row_c->is_publish;
 							$isExpire = false;
@@ -82,7 +82,7 @@
 							/* if tbl is promotion, then fetch data from other table */
 								if($row_c->ttable == 'tbl_promotion'){
 									$pro_det_rs = exec_query("SELECT * FROM tbl_promotion_detail WHERE promo_id = '$row_c->mainPId'", $con);
-									$pro_det_row = mysql_fetch_object($pro_det_rs);
+									$pro_det_row = mysqli_fetch_object($pro_det_rs);
 									$idss = $pro_det_row->ids;
 									$catt = $pro_det_row->category_id;
 								}
@@ -103,14 +103,14 @@
 								
 								if($idss != ''){
 									$dataRs = exec_query("SELECT $colName FROM $table WHERE $col IN ($idss)", $con);
-									while($dataRow = mysql_fetch_object($dataRs)){
+									while($dataRow = mysqli_fetch_object($dataRs)){
 										$dataName .= $dataRow->$colName.', ';
 									}
 								}
 								
 								if($isCat && $catt != ''){
 									$catdataRs = exec_query("SELECT category_name FROM tbl_category WHERE category_id IN ($catt)", $con);
-									while($catdataRow = mysql_fetch_object($catdataRs)){
+									while($catdataRow = mysqli_fetch_object($catdataRs)){
 										$catdataName .= $catdataRow->category_name.', ';
 									}
 								}

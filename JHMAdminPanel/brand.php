@@ -18,8 +18,8 @@
 							<?php
 							$i = 1;
 							$query = "SELECT tbl_brand.*, tbl_category.category_name FROM tbl_brand LEFT JOIN tbl_category ON tbl_category.category_id = tbl_brand.category_id ORDER BY brand_name";
-							$rs_br = mysql_query($query, $con);
-							while($row_br = mysql_fetch_object($rs_br)){ $img = $row_br->brand_img;
+							$rs_br = mysqli_query($con, $query);
+							while($row_br = mysqli_fetch_object($rs_br)){ $img = $row_br->brand_img;
 							?>
 								<tr <?php if($img == ''){ echo 'class="danger"'; } ?>>
 									<td><?php echo $i; ?></td>

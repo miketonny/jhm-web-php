@@ -26,8 +26,8 @@ $cdate = date('Y-m-d H:i:s');
 						$query = "SELECT tbl_promotion_master.*, tbl_promotion.title, tbl_promotion.promo_value, tbl_promotion.percent_or_amount FROM tbl_promotion_master
 						LEFT JOIN tbl_promotion ON tbl_promotion.promo_id = tbl_promotion_master.promo_id
 						ORDER BY tbl_promotion_master.recid DESC";
-						$rs = mysql_query($query, $con);
-						while($row = mysql_fetch_object($rs)){ $stat = $row->is_activate;
+						$rs = mysqli_query($con, $query);
+						while($row = mysqli_fetch_object($rs)){ $stat = $row->is_activate;
 						?>
 							<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 								<td><?php echo $i; ?></td>
@@ -73,7 +73,7 @@ $cdate = date('Y-m-d H:i:s');
                                                                 
 																//$pro_rs = exec_query("SELECT title, promo_id, promo_value, percent_or_amount FROM tbl_promotion ORDER BY promo_id DESC", $con);
 																$pro_rs = exec_query("SELECT * FROM tbl_promotion WHERE (DATE_FORMAT(start_date, '%Y-%m-%d %H:%i:%s') <= '$cdate' AND DATE_FORMAT(end_date, '%Y-%m-%d %H:%i:%s') >= '$cdate')", $con);
-                                                                while($pro_row = mysql_fetch_object($pro_rs)){ ?>
+                                                                while($pro_row = mysqli_fetch_object($pro_rs)){ ?>
                                                                    	
                                                                     <option <?php getSelected($row->promo_id,$pro_row->promo_id); ?> value="<?php echo $pro_row->promo_id;?>"><?php echo $pro_row->title.' ('.$pro_row->promo_value; echo ($pro_row->percent_or_amount == 'amount')?' $)':' %)'; echo ' (valid from '.date('d M, Y h:i A', strtotime($pro_row->start_date)).' to '.date('d M, Y h:i A', strtotime($pro_row->end_date)).')'; ?></option>
                                                                     
@@ -149,7 +149,7 @@ function delete_pm(id){
 							
 							$pro_rs = exec_query("SELECT * FROM tbl_promotion WHERE (DATE_FORMAT(start_date, '%Y-%m-%d %H:%i:%s') <= '$cdate' AND DATE_FORMAT(end_date, '%Y-%m-%d %H:%i:%s') >= '$cdate')", $con);
 							
-                            while($pro_row = mysql_fetch_object($pro_rs)){ ?>
+                            while($pro_row = mysqli_fetch_object($pro_rs)){ ?>
                                	<option value="<?php echo $pro_row->promo_id;?>"><?php echo $pro_row->title.' ('.$pro_row->promo_value; echo ($pro_row->percent_or_amount == 'amount')?' $)':' %)'; echo ' (valid from '.date('d M, Y h:i A', strtotime($pro_row->start_date)).' to '.date('d M, Y h:i A', strtotime($pro_row->end_date)).')'; ?></option>
                             <?php }?>
                         </select>

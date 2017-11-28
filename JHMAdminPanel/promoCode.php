@@ -23,9 +23,9 @@
 						FROM tbl_promo_code
 						LEFT JOIN tbl_promo_code_detail ON tbl_promo_code.recid = tbl_promo_code_detail.promo_code_id
 						ORDER BY tbl_promo_code.recid DESC";
-						$rs = mysql_query($query, $con);
-						while($row = mysql_fetch_object($rs)){
-							$adminData = mysql_fetch_object(exec_query("SELECT username, email FROM admin WHERE recid = '$row->admin_id'", $con));
+						$rs = mysqli_query($con, $query);
+						while($row = mysqli_fetch_object($rs)){
+							$adminData = mysqli_fetch_object(exec_query("SELECT username, email FROM admin WHERE recid = '$row->admin_id'", $con));
 						?>
 							<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 								<td><?php echo $i; ?></td>

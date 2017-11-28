@@ -1,5 +1,7 @@
 <?php setcookie('PHPSESSID', session_id(), 0, '/');
-session_start();
+if (!isset($_SESSION)) {
+      session_start();
+}
 include '../include/config.php';
 include '../include/function.php';
 if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && $_SESSION['admin'] != ''){ redirect('home.php'); }
@@ -15,13 +17,13 @@ if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && $_SESSION['admin']
 	<title><?php echo siteName; ?> - Admin Login</title>
 
 	<meta name="description" content="">
-	<meta name="author" content="Akshay Kumar">
+	<meta name="author" content="MichaelZ">
 
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css" /> 
 
     <!-- Fonts  -->
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,300' rel='stylesheet' type='text/css'>
     
     <!-- Base Styling  -->
     <link rel="stylesheet" href="assets/css/app/app.v1.css" />
@@ -42,7 +44,7 @@ if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && $_SESSION['admin']
 			<!-- login start -->
 			<div class="col-lg-4 col-lg-offset-4" id="login_b"><?php echo getMessage(); ?>
 				<h3 class="text-center"><?php echo siteName; ?></h3>
-				<p class="text-center">Sign in to manage Site !</p>
+				<p class="text-center">Sign in to Admin Panel</p>
 				<hr class="clean">
 				<form role="form" method="post" action="login_model.php" id="loginForm" >
 				  <div class="form-group input-group">

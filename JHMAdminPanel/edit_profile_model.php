@@ -11,9 +11,9 @@ $old_password = md5($_POST['old_password']);
 $new_password = md5($_POST['new_password']);
 $confirm_new_password = md5($_POST['confirm_new_password']);
 
-$rs = mysql_query("SELECT password FROM admin WHERE recid = '$recid'", $con);
-if(mysql_num_rows($rs)){
-	$row = mysql_fetch_object($rs);
+$rs = mysqli_query($con, "SELECT password FROM admin WHERE recid = '$recid'");
+if(mysqli_num_rows($rs)){
+	$row = mysqli_fetch_object($rs);
 	$old_db_password = $row->password;
 	
 	if($old_db_password == $old_password){
@@ -135,7 +135,7 @@ Mexico, CA 10700</span></p>
 		
 			$mail = mail($to, $subject, $txt, $headers);
 			
-			$rs_update = mysql_query("UPDATE admin set email = '$email', password = '$new_password' WHERE recid = '$recid'", $con);
+			$rs_update = mysqli_query($con, "UPDATE admin set email = '$email', password = '$new_password' WHERE recid = '$recid'");
 			setMessage('Profile successfully edited.', 'alert alert-success');
 			redirect('home.php');
 			die();

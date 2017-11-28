@@ -4,8 +4,8 @@ $content = '';
 if(isset($_GET['data1']) && $_GET['data1'] != ''){
 	$id = $_GET['data1'];
 	$rs = exec_query("SELECT * FROM tbl_newsletter WHERE recid = '$id'", $con);
-	if(mysql_num_rows($rs)){
-		$row = mysql_fetch_object($rs);
+	if(mysqli_num_rows($rs)){
+		$row = mysqli_fetch_object($rs);
 		echo $content = html_entity_decode($row->content);
 	}
 }

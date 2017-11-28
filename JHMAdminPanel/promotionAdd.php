@@ -152,7 +152,7 @@ $formImg = '
 											<option value=""></option>
 											<?php
 											$cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-											while($cat_row = mysql_fetch_object($cat_rs)){
+											while($cat_row = mysqli_fetch_object($cat_rs)){
 												echo '<option value="'.$cat_row->category_id.'">'.$cat_row->category_name.'</option>';
 											}?>
 										</select>
@@ -225,7 +225,7 @@ $formImg = '
 											<option value=""></option>
 											<?php
 											$cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-											while($cat_row = mysql_fetch_object($cat_rs)){
+											while($cat_row = mysqli_fetch_object($cat_rs)){
 												echo '<option value="'.$cat_row->category_id.'">'.$cat_row->category_name.'</option>';
 											}?>
 										</select>
@@ -254,7 +254,7 @@ $formImg = '
 										<select class="form-control chosen-select" required name="brand[]" id="brandSel" data-placeholder="SELECT BRAND" multiple>
 											<option value=""></option>
 											<?php $br_rs = exec_query("SELECT * FROM tbl_brand ORDER BY brand_name", $con);
-											while($br_row = mysql_fetch_object($br_rs)){
+											while($br_row = mysqli_fetch_object($br_rs)){
 												echo '<option value="'.$br_row->brand_id.'">'.$br_row->brand_name.'</option>';
 											}?>
 										</select>
@@ -311,7 +311,7 @@ $formImg = '
 											<option value=""></option>
 											<?php
 											$cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-											while($cat_row = mysql_fetch_object($cat_rs)){
+											while($cat_row = mysqli_fetch_object($cat_rs)){
 												echo '<option value="'.$cat_row->category_id.'">'.$cat_row->category_name.'</option>';
 											}?>
 										</select>

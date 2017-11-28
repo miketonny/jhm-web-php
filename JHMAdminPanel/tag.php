@@ -23,8 +23,8 @@
 						<?php
 						$i = 1;
 						$query = "SELECT * FROM tbl_tag	ORDER BY title";
-						$rs = mysql_query($query, $con);
-						while($row = mysql_fetch_object($rs)){
+						$rs = mysqli_query($con, $query);
+						while($row = mysqli_fetch_object($rs)){
 						?>
 							<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 								<td><?php echo $i; ?></td>

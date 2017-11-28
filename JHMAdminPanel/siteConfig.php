@@ -1,8 +1,8 @@
 <?php include 'include/header.php';
-$noCats = mysql_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'configNoCategories'", $con));
-$mins = mysql_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'shoppingTimeoutCart'", $con));
-$noPro = mysql_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'noProductPerPage'", $con));
-$noProductOnCategoryPage = mysql_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'noProductOnCategoryPage'", $con));
+$noCats = mysqli_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'configNoCategories'", $con));
+$mins = mysqli_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'shoppingTimeoutCart'", $con));
+$noPro = mysqli_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'noProductPerPage'", $con));
+$noProductOnCategoryPage = mysqli_fetch_object(exec_query("SELECT no FROM tbl_config WHERE type = 'noProductOnCategoryPage'", $con));
 ?>
         <div class="warper container-fluid">
             <div class="page-header"> <h1>Site Configuration <small>Site Configuration</small></h1> </div>
@@ -16,7 +16,7 @@ $noProductOnCategoryPage = mysql_fetch_object(exec_query("SELECT no FROM tbl_con
                                 <div class="form-group">
 									<label class="col-sm-4 control-label">Enter No.</label>
                                     <?php
-                                    $count = mysql_fetch_object(exec_query("SELECT COUNT(category_id) AS count FROM `tbl_category` WHERE `parent_id` = 0 AND `superparent_id` = 0", $con))->count;
+                                    $count = mysqli_fetch_object(exec_query("SELECT COUNT(category_id) AS count FROM `tbl_category` WHERE `parent_id` = 0 AND `superparent_id` = 0", $con))->count;
 									?>
                                     <div class="col-sm-7">
 										<input class="form-control input-sm" required name="no" placeholder="Enter No. of Categories" type="number" min="1" value="<?php echo $noCats->no; ?>" />

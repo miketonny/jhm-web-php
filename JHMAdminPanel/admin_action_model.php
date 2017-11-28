@@ -157,13 +157,13 @@ function categoryAdd($con) {
     $query = "INSERT INTO tbl_category(category_name, category_description, slug, parent_id, superparent_id, flag,color_code,category_image,created_on $col) VALUES('$name', '$desc', '$slug', '$subCat', '$mainCat', '$flag','$color_code','$image_path','" . date('c') . "' $val)";
 
     if (exec_query($query, $con)) {
-        $category_id = mysql_insert_id();
+        $category_id = mysqli_insert_id($con);
         foreach ($_FILES['img']['name'] AS $key => $value) {
             $r = rand(10, 99);
             $img = str_replace(array("'", ' ', '"'), '', $_FILES['img']['name'][$key]);
             $type = $_FILES['img']['type'][$key];
             if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/gif' || $type == 'image/jpg') {
-                $rs = mysql_query("INSERT INTO tbl_category_media(category_id, media_type, media_src) VALUES('$category_id', 'img', '" . $r . $img . "')", $con);
+                $rs = mysqli_query($con, "INSERT INTO tbl_category_media(category_id, media_type, media_src) VALUES('$category_id', 'img', '" . $r . $img . "')");
                 move_uploaded_file($_FILES['img']['tmp_name'][$key], "../site_image/category/" . $r . $img);
             }
         }
@@ -223,7 +223,7 @@ function categoryEdit($con) {
             $img = str_replace(array("'", ' ', '"'), '', $_FILES['img']['name'][$key]);
             $type = $_FILES['img']['type'][$key];
             if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/gif' || $type == 'image/jpg') {
-                $rs = mysql_query("INSERT INTO tbl_category_media(category_id, media_type, media_src) VALUES('$category_id', 'img', '" . $r . $img . "')", $con);
+                $rs = mysqli_query($con, "INSERT INTO tbl_category_media(category_id, media_type, media_src) VALUES('$category_id', 'img', '" . $r . $img . "')");
                 move_uploaded_file($_FILES['img']['tmp_name'][$key], "../site_image/category/" . $r . $img);
             }
         }
@@ -435,7 +435,7 @@ function productAdd($con) {
     $upc = 1; //$_POST['upc'];
     $chkSkuRs = exec_query("SELECT product_id FROM tbl_product WHERE product_sku = '$sku' and is_activate != 4", $con);
     //$chkUpcRs = exec_query("SELECT product_id FROM tbl_product WHERE product_upc = '$upc'", $con);
-    if (mysql_num_rows($chkSkuRs) > 0) { 
+    if (mysqli_num_rows($chkSkuRs) > 0) { 
         setMessage('Failed, Product SKU must be unique!', 'alert alert-error');
         redirect('productAdd.php');
         die();
@@ -512,7 +512,7 @@ function productAdd($con) {
 
     $query = "INSERT INTO tbl_product(temp_subcategory, brand_id, product_name, slug, qty, product_sku, product_upc, manufacturer_code, user_group, age_group, size, keyword, stock_availability, created_on, created_by) VALUES('$tempSubCatValue', '$brand', '$name', '$slug', '$qty', '$sku', '$upc', '$mcode', '$group_value', '$age_value', '$size_value', '$keyword', '$stock', '" . date('c') . "', '" . $_SESSION['admin'] . "')";
     if (exec_query($query, $con)) {
-        $product_id = mysql_insert_id();
+        $product_id = mysqli_insert_id($con);
 
         // category insetrtion
         foreach ($cat AS $value) {
@@ -648,7 +648,7 @@ function productAddDetail($con) {
         if ($colorCode[$key] != '' && $price[$key] != '' && $i[$key] != '') {
             $rsColor = exec_query("INSERT INTO tbl_product_color(product_id, color_code) VALUES('$pid', '" . $colorCode[$key] . "') ", $con);
             if ($rsColor) {
-                $colorId = mysql_insert_id();
+                $colorId = mysqli_insert_id($con);
                 // price operation
                 $rsPrice = exec_query("INSERT INTO tbl_product_price(product_id, product_upc, product_price, qty, product_rrp, color_id) VALUES('$pid', '" . $upc[$key] . "', '" . $price[$key] . "', '" . $stock[$key] . "','" . $rrp[$key] . "', '$colorId')", $con);
 
@@ -672,7 +672,7 @@ function productAddDetail($con) {
                         $thumbimg = uploadProductImage('imgMain' . $i[$key], '../site_image/product/');
                         $img = $thumbimg['image'];
                         $thumb = $thumbimg['thumbnail'];
-                        $imgRsMain = mysql_query("INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb, is_main) VALUES('$pid', '$colorId', 'img', '" . $img . "', '" . $thumb . "', 1)", $con);
+                        $imgRsMain = mysqli_query($con, "INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb, is_main) VALUES('$pid', '$colorId', 'img', '" . $img . "', '" . $thumb . "', 1)");
                     }
                 }
 
@@ -686,12 +686,12 @@ function productAddDetail($con) {
                         $thumbimg = uploadMultiProductImage('img' . $i[$key], $imgKey, '../site_image/product/');
                         $img = $thumbimg['image'];
                         $thumb = $thumbimg['thumbnail'];
-                        $imgRs = mysql_query("INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb) VALUES('$pid', '$colorId', 'img', '" . $img . "', '" . $thumb . "')", $con);
+                        $imgRs = mysqli_query($con, "INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb) VALUES('$pid', '$colorId', 'img', '" . $img . "', '" . $thumb . "')");
                     }
                 }
                 if (!isset($imgRsMain)) {
                     $imgg = 'product.png';
-                    mysql_query("INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb, is_main) VALUES('$pid', '$colorId', 'img', '" . $imgg . "', '" . $imgg . "', 1)", $con);
+                    mysqli_query($con, "INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb, is_main) VALUES('$pid', '$colorId', 'img', '" . $imgg . "', '" . $imgg . "', 1)");
                 }
                 // video operation
                 foreach ($_FILES['video' . $i[$key]]['name'] AS $vidKey => $value) {
@@ -701,7 +701,7 @@ function productAddDetail($con) {
                     $vid = str_replace(array("'", ' ', '"'), '', $_FILES['video' . $i[$key]]['name'][$vidKey]);
                     $type = $_FILES['video' . $i[$key]]['type'][$vidKey];
                     if ($type == 'video/mp4') {
-                        $rsVid = mysql_query("INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src) VALUES('$pid', '$colorId', 'video', '" . $r . $vid . "')", $con);
+                        $rsVid = mysqli_query($con, "INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src) VALUES('$pid', '$colorId', 'video', '" . $r . $vid . "')");
                         if ($rsVid) {
                             move_uploaded_file($_FILES['video' . $i[$key]]['tmp_name'][$vidKey], "../site_image/productvideo/" . $r . $vid);
                         }
@@ -881,8 +881,8 @@ function productStepImgEdit($con) {
                     $thumb = $thumbimg['thumbnail'];
                 }
             }
-            $rsImg = mysql_query("INSERT INTO tbl_product_usage(product_id, img, thumb, text)
-							VALUES('$id', '" . $img . "', '" . $thumb . "', '" . $value . "')", $con);
+            $rsImg = mysqli_query($con, "INSERT INTO tbl_product_usage(product_id, img, thumb, text)
+							VALUES('$id', '" . $img . "', '" . $thumb . "', '" . $value . "')");
         }
     }
 
@@ -929,7 +929,7 @@ function productEditDetail($con) {
 
             /* chk that if blank img is added */
             $chkCondi = "WHERE product_id = '$pid' AND color_id = '" . $color_id[$key] . "' AND media_src = 'product.png'";
-            $rsChkBlnkImg = mysql_query("SELECT recid FROM tbl_product_media $chkCondi", $con);
+            $rsChkBlnkImg = mysqli_query($con, "SELECT recid FROM tbl_product_media $chkCondi");
 
 
             //main img operation
@@ -941,9 +941,9 @@ function productEditDetail($con) {
                     $img = $thumbimg['image'];
                     $thumb = $thumbimg['thumbnail'];
 
-                    mysql_query("DELETE FROM tbl_product_media WHERE product_id = '$pid' AND color_id = '" . $color_id[$key] . "' AND media_type = 'img' AND is_main = 1");
+                    mysqli_query($con, "DELETE FROM tbl_product_media WHERE product_id = '$pid' AND color_id = '" . $color_id[$key] . "' AND media_type = 'img' AND is_main = 1");
 
-                    $imgRsMain = mysql_query("INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb, is_main) VALUES('$pid', '" . $color_id[$key] . "', 'img', '" . $img . "', '" . $thumb . "', 1)", $con);
+                    $imgRsMain = mysqli_query($con, "INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb, is_main) VALUES('$pid', '" . $color_id[$key] . "', 'img', '" . $img . "', '" . $thumb . "', 1)");
                 }
             }
 
@@ -957,12 +957,12 @@ function productEditDetail($con) {
                     $thumbimg = uploadMultiProductImage('img' . $i[$key], $imgKey, '../site_image/product/');
                     $img = $thumbimg['image'];
                     $thumb = $thumbimg['thumbnail'];
-                    $rsImg = mysql_query("INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb) VALUES('$pid', '" . $color_id[$key] . "', 'img', '" . $img . "', '" . $thumb . "')", $con);
+                    $rsImg = mysqli_query($con, "INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src, media_thumb) VALUES('$pid', '" . $color_id[$key] . "', 'img', '" . $img . "', '" . $thumb . "')");
                 }
             }
 
-            if (isset($imgRsMain) && mysql_num_rows($rsChkBlnkImg) > 0) {
-                mysql_query("DELETE FROM tbl_product_media $chkCondi", $con);
+            if (isset($imgRsMain) && mysqli_num_rows($rsChkBlnkImg) > 0) {
+                mysqli_query($con, "DELETE FROM tbl_product_media $chkCondi");
             }
 
             // video operation
@@ -979,7 +979,7 @@ function productEditDetail($con) {
                     } else {
                         $queryVid = "INSERT INTO tbl_product_media(product_id, color_id, media_type, media_src) VALUES('$pid', '" . $color_id[$key] . "', 'video', '" . $r . $vid . "')";
                     }
-                    if (mysql_query($queryVid, $con)) {
+                    if (mysqli_query($con, $queryVid)) {
                         move_uploaded_file($_FILES['video' . $i[$key]]['tmp_name'][$vidKey], "../site_image/productvideo/" . $r . $vid);
                     }
                 }
@@ -1025,7 +1025,7 @@ function updateProductCategory($con) {
             // category for each loop
             foreach ($cat AS $key2 => $catId) {
                 $chkRs = exec_query("SELECT recid FROM tbl_product_category WHERE product_id = '$productId' AND category_id = '$catId'", $con);
-                if (!mysql_num_rows($chkRs)) {
+                if (!mysqli_num_rows($chkRs)) {
                     exec_query("INSERT INTO tbl_product_category(product_id, category_id) VALUES('$productId', '$catId')", $con);
                 }
             }
@@ -1061,7 +1061,7 @@ function assignMoreCategories($con) {
             // category for each loop
             foreach ($cat AS $key2 => $catId) {
                 $chkRs = exec_query("SELECT recid FROM tbl_product_category WHERE product_id = '$productId' AND category_id = '$catId'", $con);
-                if (!mysql_num_rows($chkRs)) {
+                if (!mysqli_num_rows($chkRs)) {
                     exec_query("INSERT INTO tbl_product_category(product_id, category_id) VALUES('$productId', '$catId')", $con);
                 }
             }
@@ -1118,7 +1118,7 @@ function managerAdd($con) {
     if ($password == $cpassword) {
         $query = "INSERT INTO `admin` (`username`, `password`, `email`, `atype`) VALUES ('$username', '$password', '$email', 1)";
         if (exec_query($query, $con)) {
-            $id = mysql_insert_id();
+            $id = mysqli_insert_id($con);
             setMessage('Sub Admin Successfully Registered', 'alert alert-success');
             redirect('managerPermission.php?data1=' . $id);
             die();
@@ -1148,7 +1148,7 @@ function setPermission($con) {
         'newsletter' => 'Newsletter'
     );
 
-    $del = mysql_query("DELETE FROM tbl_permission WHERE user_id = '$id'", $con);
+    $del = mysqli_query($con, "DELETE FROM tbl_permission WHERE user_id = '$id'");
     foreach ($permissionArray AS $key => $val) {
         if (isset($_POST[$key])) {
 
@@ -1174,11 +1174,11 @@ function setPermission($con) {
                 continue;
             }
 
-            $ins = mysql_query("INSERT INTO tbl_permission(user_id, permission, tbl_permission.add, edit, tbl_permission.read, status) VALUES('$id', '" . $_POST[$key] . "', '$add', '$edit', '$read', '$status')", $con);
+            $ins = mysqli_query($con, "INSERT INTO tbl_permission(user_id, permission, tbl_permission.add, edit, tbl_permission.read, status) VALUES('$id', '" . $_POST[$key] . "', '$add', '$edit', '$read', '$status')");
 
             if ($key == 'sysConfig') {
                 foreach ($tempArr AS $key1 => $val1) {
-                    $ins = mysql_query("INSERT INTO tbl_permission(user_id, permission, tbl_permission.add, edit, tbl_permission.read, status) VALUES('$id', '" . $key1 . "', '$add', '$edit', '$read', '$status')", $con);
+                    $ins = mysqli_query($con, "INSERT INTO tbl_permission(user_id, permission, tbl_permission.add, edit, tbl_permission.read, status) VALUES('$id', '" . $key1 . "', '$add', '$edit', '$read', '$status')");
                 }
                 break;
             }
@@ -1231,7 +1231,7 @@ function promotionAdd($con) {
     }
     $query = "INSERT INTO `tbl_promotion`(`title`, `slug`, `promo_code`, `promo_type`, `percent_or_amount`, `promo_value`, bg_img, product_img, start_date, end_date, created_on, is_featured) VALUES ('$title', '$slug', '$ccode', '$type', '$amType', '$cvalue', '$bimg', '$pimg', '$fdt', '$tdt', '" . date('c') . "', '$fea')";
     if (exec_query($query, $con)) {
-        $promoId = mysql_insert_id();
+        $promoId = mysqli_insert_id($con);
         if ($type != 'allPro') {
             if ($type == 'allCat') {
                 $cat_value = '';
@@ -1256,7 +1256,7 @@ function promotionAdd($con) {
                 $catQ = "SELECT category_id FROM `tbl_category` WHERE (parent_id IN ($cat_value)) OR (superparent_id IN ($cat_value)) OR (category_id IN ($cat_value))";
                 $catRs = exec_query($catQ, $con);
                 $catArray = array();
-                while ($catRow = mysql_fetch_object($catRs)) {
+                while ($catRow = mysqli_fetch_object($catRs)) {
                     $catArray[] = $catRow->category_id;
                 }
                 $categoriesAll = implode(',', $catArray);
@@ -1284,7 +1284,7 @@ function promotionAdd($con) {
                     $catQ = "SELECT category_id FROM `tbl_category` WHERE (parent_id IN ($cat_value)) OR (superparent_id IN ($cat_value)) OR (category_id IN ($cat_value))";
                     $catRs = exec_query($catQ, $con);
                     $catArray = array();
-                    while ($catRow = mysql_fetch_object($catRs)) {
+                    while ($catRow = mysqli_fetch_object($catRs)) {
                         $catArray[] = $catRow->category_id;
                     }
                     $categoriesAll = implode(',', $catArray);
@@ -1337,7 +1337,7 @@ function promotionAdd($con) {
             //echo $getProQ;
             $productIdPromotion = array();
             $getProRs = exec_query($getProQ, $con);
-            while ($getPro = mysql_fetch_object($getProRs)) {
+            while ($getPro = mysqli_fetch_object($getProRs)) {
                 $productIdPromotion[] = $getPro->product_id;
             }
         } else {
@@ -1368,15 +1368,15 @@ function sendMailForWishlistProductPromotion($promoId, $productIdPromotion, $con
         $qq = "SELECT DISTINCT(tw.user_id), tu.email FROM tbl_user_wishlist tw LEFT JOIN tbl_user tu ON tu.user_id = tw.user_id WHERE tw.product_id IN ($pids)";
     }
     $rs = exec_query($qq, $con);
-    if (mysql_num_rows($rs)) {
+    if (mysqli_num_rows($rs)) {
         $emails = array();
-        while ($row = mysql_fetch_object($rs)) {
+        while ($row = mysqli_fetch_object($rs)) {
             $emails[] = $row->email;
         }
 
         /* fetch promotion details */
         $rsPromo = exec_query("SELECT * FROM tbl_promotion WHERE promo_id = '$promoId'", $con);
-        $promotion = mysql_fetch_object($rsPromo);
+        $promotion = mysqli_fetch_object($rsPromo);
         if ($promotion->percent_or_amount == 'percent') {
             $detail = "FLAT $promotion->promo_value % OFF !!!";
         } elseif ($promotion->percent_or_amount == 'amount') {
@@ -1386,7 +1386,7 @@ function sendMailForWishlistProductPromotion($promoId, $productIdPromotion, $con
 
         /* fetch emaiul template */
         $rsEmail = exec_query("SELECT * FROM tbl_email_template WHERE type = 'promotion'", $con);
-        $rowEmail = mysql_fetch_object($rsEmail);
+        $rowEmail = mysqli_fetch_object($rsEmail);
         $content = $rowEmail->content;
 
         $contentHTML = html_entity_decode($content);
@@ -1498,7 +1498,7 @@ function dealBannerImage($con) {
     $imgNm = $r . $img;
     $type = $_FILES['img']['type'];
     if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/gif' || $type == 'image/jpg') {
-        $rs = mysql_query("UPDATE tbl_config SET other = '$imgNm' WHERE type = 'dealBanner'");
+        $rs = mysqli_query($con, "UPDATE tbl_config SET other = '$imgNm' WHERE type = 'dealBanner'");
         if ($rs) {
             move_uploaded_file($_FILES['img']['tmp_name'], "../site_image/promotion/" . $imgNm);
             setMessage('Deal Banner Image Successfully Changed', 'alert alert-success');
@@ -1589,14 +1589,14 @@ function promoCodeAdd($con) {
             $q = "INSERT INTO tbl_promo_code(title, min_cart_value, percent_or_amount, promo_value, promo_code, promo_type, start_date, end_date, banner_thumb, banner_img, created_on) VALUES('$title', '$minVal', '$amType', '$cvalue', '$pcode', '$promoId', '$fdt', '$tdt', '$thumb', '$img', '" . date('c') . "')";
             unset($promoId);
             if (exec_query($q, $con)) {
-                $promoId = mysql_insert_id();
+                $promoId = mysqli_insert_id($con);
             }
         }
     } else {
         $q = "INSERT INTO tbl_promo_code(title, min_cart_value, percent_or_amount, promo_value, promo_code, start_date, end_date, banner_thumb, banner_img, created_on)
 		VALUES('$title', '$minVal', '$amType', '$cvalue', '$pcode', '$fdt', '$tdt', '$thumb', '$img', '" . date('c') . "')";
         if (exec_query($q, $con)) {
-            $promoId = mysql_insert_id();
+            $promoId = mysqli_insert_id($con);
         }
     }
 
@@ -1654,7 +1654,7 @@ function promoCodeAddEmail($con) {
 function promoCodeGenerateEmail($id, $con) {
     $str = '';
     $content = '';
-    $promotion = mysql_fetch_object(exec_query("SELECT * FROM tbl_promo_code WHERE recid = '$id'", $con));
+    $promotion = mysqli_fetch_object(exec_query("SELECT * FROM tbl_promo_code WHERE recid = '$id'", $con));
     /* chk now */
     if (isset($promotion->recid) && $promotion->recid != '') {
         $condi = '';
@@ -1737,10 +1737,10 @@ function promoCodeGenerateEmail($id, $con) {
 		LEFT JOIN tbl_product_category tpcat ON tpcat.product_id = tp.product_id
 		WHERE tpm.media_type = 'img' $condi GROUP BY tp.product_id LIMIT 0, 6";
         $product_rs = exec_query($product_q, $con);
-        $totalProducts = mysql_num_rows($product_rs);
+        $totalProducts = mysqli_num_rows($product_rs);
         if ($totalProducts > 0) {
             $i = 1;
-            while ($row = mysql_fetch_object($product_rs)) {
+            while ($row = mysqli_fetch_object($product_rs)) {
                 /* for get promotion start */
                 $all_cat = $row->all_cat;
 
@@ -1808,7 +1808,7 @@ function promoCodeGenerateEmail($id, $con) {
         //echo $str; die();
         // before return add content of templete
         $rsEmail = exec_query("SELECT * FROM tbl_email_template WHERE type = 'promocode'", $con);
-        $rowEmail = mysql_fetch_object($rsEmail);
+        $rowEmail = mysqli_fetch_object($rsEmail);
         $content = $rowEmail->content;
 
         $contentHTML = html_entity_decode($content);
@@ -1867,7 +1867,7 @@ function promoCodeExtra($con) {
         $q = "INSERT INTO tbl_promo_code(promo_type, ids) VALUES('$type', '$p_value')";
     }
     if (exec_query($q, $con)) {
-        $promoCodeId = mysql_insert_id();
+        $promoCodeId = mysqli_insert_id($con);
         if (isset($promoCodeId) && $promoCodeId != '') {
             setMessage('Promo Code Successfully Added. Now Fill the Promo Code Details.', 'alert alert-success');
             redirect('promoCodeAdd.php?data1=' . $promoCodeId);
@@ -2129,16 +2129,16 @@ function dispatchInfo($con) {
 
             // get email
             $orderRs = exec_query("SELECT user_id FROM tbl_order WHERE order_id = '$orderId'", $con);
-            $user_id = mysql_fetch_object($orderRs)->user_id;
+            $user_id = mysqli_fetch_object($orderRs)->user_id;
             // send mail
-            $email = mysql_fetch_object(mysql_query("SELECT email FROM tbl_user WHERE user_id = '$user_id'"));
+            $email = mysqli_fetch_object(mysqli_query($con, "SELECT email FROM tbl_user WHERE user_id = '$user_id'"));
             if (isset($email->email) && $email->email != '') {
-                $rsEmail = mysql_query("SELECT * FROM tbl_email_template WHERE type = 'orderDispatch'");
-                $rowEmail = mysql_fetch_object($rsEmail);
+                $rsEmail = mysqli_query($con, "SELECT * FROM tbl_email_template WHERE type = 'orderDispatch'");
+                $rowEmail = mysqli_fetch_object($rsEmail);
                 $content = $rowEmail->content;
 
                 //get delivery addreess
-                $row = mysql_fetch_object(mysql_query("SELECT * FROM tbl_order WHERE order_id = '$orderId'"));
+                $row = mysqli_fetch_object(mysqli_query($con, "SELECT * FROM tbl_order WHERE order_id = '$orderId'"));
                 $shipuname = $row->od_shipping_first_name . ' ' . $row->od_shipping_last_name;
                 $phoneAlt = $row->od_shipping_alt_phone;
                 $phoneAlt1 = ($phoneAlt != '') ? ' (' . $phoneAlt . ')' : '';

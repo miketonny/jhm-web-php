@@ -5,7 +5,7 @@ $pro = getProduct($id, $con);
 $chk = 'checked="checked"';
 $sel = 'selected="selected"';
 $cat_rs = exec_query("select category_id from tbl_product_category WHERE product_id = '$id'", $con);
-while($cat_row = mysql_fetch_object($cat_rs)){ $catArr[] = $cat_row->category_id; }
+while($cat_row = mysqli_fetch_object($cat_rs)){ $catArr[] = $cat_row->category_id; }
 $sCatOp = ''; $ssCatOp = ''; $sCats = '';
 $mCats = array();
 $tempSubArr = array();
@@ -65,7 +65,7 @@ if(!empty($tempSubArr)){
 										<option value=""></option>
 										<?php
 										$cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-										while($cat_row = mysql_fetch_object($cat_rs)){ ?>
+										while($cat_row = mysqli_fetch_object($cat_rs)){ ?>
 											<option
 											<?php echo (in_array($cat_row->category_id, $mCats) || in_array($cat_row->category_id, $catArr))?$sel:''; ?>
                                             value="<?php echo $cat_row->category_id;?>"><?php echo $cat_row->category_name; ?></option>
@@ -110,7 +110,7 @@ if(!empty($tempSubArr)){
 									<select class="form-control" required name="brand" id="brandSel">
 										<option value="">- SELECT BRAND -</option>
 										<?php $br_rs = exec_query("SELECT * FROM tbl_brand ORDER BY brand_name", $con);
-										while($br_row = mysql_fetch_object($br_rs)){ ?>
+										while($br_row = mysqli_fetch_object($br_rs)){ ?>
 											<option <?php getSelected($br_row->brand_id, $pro->brand_id); ?> value="<?php echo $br_row->brand_id; ?>"><?php echo $br_row->brand_name; ?></option>
 										<?php }?>
 										<option value="<?php echo $pro->brand_id; ?>" selected="selected"><?php echo $pro->brand_name; ?></option>
@@ -248,7 +248,7 @@ if(!empty($tempSubArr)){
                                     <select class="form-control" name="sizeUnit" style="width: 196px;">
                                         <option value="">- SELECT SIZE UNIT -</option>
                                         <?php $si_rs = exec_query("SELECT * FROM tbl_size ORDER BY size", $con);
-                                        while($si_row = mysql_fetch_object($si_rs)){ ?>
+                                        while($si_row = mysqli_fetch_object($si_rs)){ ?>
                                         	<option <?php if($sizeUnit == $si_row->size){ echo $sel; } ?> value="<?php echo $si_row->size; ?>"><?php echo $si_row->size; ?></option>
                                         <?php }?>
                                     </select>
@@ -309,7 +309,7 @@ if(!empty($tempSubArr)){
                                         <?php
 										$taggArr = explode(',', $pro->tag);
                                         $tag_rs = exec_query("SELECT title FROM tbl_tag ORDER BY title", $con);
-                                        while($tag_row = mysql_fetch_object($tag_rs)){ ?>
+                                        while($tag_row = mysqli_fetch_object($tag_rs)){ ?>
                                          	<option <?php echo (in_array($tag_row->title, $taggArr))?$sel:''; ?> ><?php echo $tag_row->title;?></option>
                                         <?php } ?>
                                     </select>
@@ -443,8 +443,8 @@ if(!empty($tempSubArr)){
 							LEFT JOIN tbl_color ON tbl_color.color_code = tpc.color_code
 							LEFT JOIN tbl_product_price tpp ON tpp.color_id = tpc.color_id
 							WHERE tpc.product_id = '$id'", $con);
-							$numCol = mysql_num_rows($rsProColor);
-							while($rowProColor = mysql_fetch_object($rsProColor)){
+							$numCol = mysqli_num_rows($rsProColor);
+							while($rowProColor = mysqli_fetch_object($rsProColor)){
 								$colorNotGet .= ($colorNotGet == '')?"'".$rowProColor->color."'":",'".$rowProColor->color."'";
 							?>
 							<div class="col-md-6">
@@ -499,7 +499,7 @@ if(!empty($tempSubArr)){
                                         <div class="form-group">
                                             <?php
 											$rsProImg = exec_query("SELECT recid, media_src, media_thumb FROM tbl_product_media tpm WHERE tpm.media_type = 'img' AND tpm.color_id = '$rowProColor->color_id' AND tpm.product_id = '$id' AND tpm.media_src != 'product.png' AND tpm.is_main = 1", $con);
-											if(mysql_num_rows($rsProImg)){ $rowMain = mysql_fetch_object($rsProImg); ?>
+											if(mysqli_num_rows($rsProImg)){ $rowMain = mysqli_fetch_object($rsProImg); ?>
 												<img src="../site_image/product/<?php echo $rowMain->media_src; ?>" height="120" />
 											<?php }else{ echo 'No Images Found!'; } ?>
                                             <label class="col-sm-4 control-label">Product Main Image</label>
@@ -516,14 +516,14 @@ if(!empty($tempSubArr)){
 												<!-- -0-------------- -->
 												<?php
 												$rsProImg = exec_query("SELECT recid, media_src FROM tbl_product_media tpm WHERE tpm.media_type = 'img' AND tpm.color_id = '$rowProColor->color_id' AND tpm.product_id = '$id' AND tpm.media_src != 'product.png' AND tpm.is_main = 0", $con);
-												if(mysql_num_rows($rsProImg) > 0){
+												if(mysqli_num_rows($rsProImg) > 0){
 												?>
 												<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 													<div class="carousel-inner">
 													<?php
 													$j = 1;
 													$ol = '';
-													while($rowProImg = mysql_fetch_object($rsProImg)){
+													while($rowProImg = mysqli_fetch_object($rsProImg)){
 														$active = ($j == 1)?'active':'';
 														$ol .= '<li data-target="#carousel-example-generic" data-slide-to="'.$j.'" class="'.$active.'"></li>';
 													?>
@@ -566,7 +566,7 @@ if(!empty($tempSubArr)){
 											<?php
 											$isVideoId = '';
 											$productVidRs = exec_query("SELECT recid, media_src FROM tbl_product_media WHERE media_type = 'video' AND color_id = '$rowProColor->color_id' AND product_id = '$id'", $con);
-											if(mysql_num_rows($productVidRs)){ $productVidRow = mysql_fetch_object($productVidRs);
+											if(mysqli_num_rows($productVidRs)){ $productVidRow = mysqli_fetch_object($productVidRs);
 												$mp4_vid = $productVidRow->media_src;
 												?>
 												<link href="../player/video-js.css" rel="stylesheet" type="text/css">
@@ -742,9 +742,9 @@ function chkFormData(){
 							//$slug = getBrand(array('slug'), $pro->brand_id, $con)->slug;
 							$condi = ($colorNotGet != '')?"AND color NOT IN($colorNotGet)":'';
 							$col_rs = exec_query("SELECT * FROM tbl_color WHERE brand = '$pro->brand_id' $condi ORDER BY color", $con);
-							$ccount = mysql_num_rows($col_rs);
+							$ccount = mysqli_num_rows($col_rs);
 							if($ccount > 0){
-								while($col_row = mysql_fetch_object($col_rs)){ ?>
+								while($col_row = mysqli_fetch_object($col_rs)){ ?>
 									<input id="color<?php echo $i; ?>" type="checkbox" value="<?php echo $col_row->color_code; ?>" name="color[]">
 									<label for="color<?php echo $i; ?>" style="background-color:<?php echo $col_row->color_code; ?>" class="tooltip-btn" title="" data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $col_row->color; ?>"><span class="fa fa-check">&nbsp;</span></label>
 							<?php $i++; } } ?>

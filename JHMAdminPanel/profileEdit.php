@@ -1,5 +1,5 @@
 <?php include 'include/header.php';
-$admin = mysql_fetch_object(exec_query("SELECT * FROM admin WHERE recid = '".$_SESSION['admin']."'", $con));
+$admin = mysqli_fetch_object(exec_query("SELECT * FROM admin WHERE recid = '".$_SESSION['admin']."'", $con));
 ?>
         <div class="warper container-fluid">
             <div class="page-header"><h1>Admin Profile <small>Edit Profile</small></h1></div>

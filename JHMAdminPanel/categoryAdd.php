@@ -18,7 +18,7 @@
                                     <optgroup label="---">
                                         <?php
                                         $cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-                                        while ($cat_row = mysql_fetch_object($cat_rs)) {
+                                        while ($cat_row = mysqli_fetch_object($cat_rs)) {
                                             echo '<option value="' . $cat_row->category_id . '">' . $cat_row->category_name . '</option>';
                                         }
                                         ?>

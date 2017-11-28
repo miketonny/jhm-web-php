@@ -26,7 +26,7 @@
                         <select class="form-control" name="type" required onChange="getWord(this.value);">
                             <option value="">- SELECT TEMPLATE TYPE -</option>
                             <?php $si_rs = exec_query("SELECT DISTINCT(type) FROM tbl_email_template ORDER BY type", $con);
-                            while($si_row = mysql_fetch_object($si_rs)){
+                            while($si_row = mysqli_fetch_object($si_rs)){
                                 echo '<option>'.$si_row->type.'</option>';
                             }?>
                         </select>

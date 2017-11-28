@@ -24,9 +24,9 @@ $sel = 'selected="selected"';
 						$i = 1;
 						//$query = "SELECT tsp.*, tss.sector_name FROM tbl_shipping_price tsp LEFT JOIN tbl_shipping_sector tss ON tss.sector_code = tsp.sector_code GROUP BY  ORDER BY sector_code";
 						$query = "SELECT tsp.* FROM tbl_shipping_price tsp ORDER BY tsp.sector_code";
-						$rs = mysql_query($query, $con);
-						while($row = mysql_fetch_object($rs)){
-							$sname1=mysql_fetch_object(mysql_query("SELECT sector_name FROM tbl_shipping_sector WHERE sector_code='$row->sector_code'"));
+						$rs = mysqli_query($con, $query);
+						while($row = mysqli_fetch_object($rs)){
+							$sname1=mysqli_fetch_object(mysqli_query($con, "SELECT sector_name FROM tbl_shipping_sector WHERE sector_code='$row->sector_code'"));
 						?>
 							<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 								<td><?php echo $i; ?></td>
@@ -56,9 +56,9 @@ $sel = 'selected="selected"';
                                                             <select class="form-control" required name="scode" >
                                                                 <option value="">- SELECT SECTOR -</option>
                                                                 <?php
-                                                                $rss = mysql_query("SELECT DISTINCT(sector_code) FROM tbl_shipping_sector ORDER BY sector_code");
-                                                                while($roww = mysql_fetch_object($rss)){
-                                                                    $sname=mysql_fetch_object(mysql_query("SELECT sector_name FROM tbl_shipping_sector WHERE sector_code='$roww->sector_code'"));
+                                                                $rss = mysqli_query($con, "SELECT DISTINCT(sector_code) FROM tbl_shipping_sector ORDER BY sector_code");
+                                                                while($roww = mysqli_fetch_object($rss)){
+                                                                    $sname=mysqli_fetch_object(mysqli_query($con, "SELECT sector_name FROM tbl_shipping_sector WHERE sector_code='$roww->sector_code'"));
                                                                     ?>
                                                                     <option <?php if($roww->sector_code == $row->sector_code){ echo $sel; } ?> value="<?php echo $roww->sector_code; ?>"><?php echo $sname->sector_name.' ('.$roww->sector_code.')'; ?></option>
                                                                 <?php }	?>

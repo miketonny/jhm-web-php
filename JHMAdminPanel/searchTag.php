@@ -32,8 +32,8 @@
                     <?php
                     $i = 1;
                     $query = "SELECT * FROM tbl_search_admin ORDER BY order_no";
-                    $rs = mysql_query($query, $con);
-                    while($row = mysql_fetch_object($rs)){
+                    $rs = mysqli_query($con, $query);
+                    while($row = mysqli_fetch_object($rs)){
                     ?>
                         <tr <?php //if($i%2 == 0){ echo 'class="info"'; } ?>>
                             <td class="index" id="<?php echo $row->recid; ?>"><?php echo $i; ?></td>
@@ -112,8 +112,8 @@
                     <?php
                     $i = 1;
                     $query = "SELECT tsh.recid, tsh.date, tsh.keyword, (SELECT COUNT( recid ) AS count FROM tbl_search_history WHERE tbl_search_history.keyword = tsh.keyword) AS count, '1' AS type FROM tbl_search_history tsh WHERE keyword != '' GROUP BY tsh.keyword ORDER BY count DESC";
-                    $rs = mysql_query($query, $con);
-                    while($row = mysql_fetch_object($rs)){
+                    $rs = mysqli_query($con, $query);
+                    while($row = mysqli_fetch_object($rs)){
                     ?>
                     <tbody>
                         <tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>

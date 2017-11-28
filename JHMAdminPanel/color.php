@@ -30,8 +30,8 @@
 							<?php
 							$i = 1;
 							$query = "SELECT tbl_color.* FROM tbl_color ORDER BY color";
-							$rs_c = mysql_query($query, $con);
-							while($row = mysql_fetch_object($rs_c)){
+							$rs_c = mysqli_query($con, $query, $con);
+							while($row = mysqli_fetch_object($rs_c)){
 							?>
 								<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 									<td><?php echo $i; ?></td>

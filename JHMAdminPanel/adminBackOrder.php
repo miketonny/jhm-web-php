@@ -32,8 +32,8 @@
 							LEFT JOIN tbl_user tu ON tu.user_id = ord.user_id
                             WHERE ord.isbackOrd=1
 							ORDER BY ord.order_id DESC";
-							$rs = mysql_query($query, $con);
-							while($row = mysql_fetch_object($rs)){
+							$rs = mysqli_query($con, $query);
+							while($row = mysqli_fetch_object($rs)){
                                 if ($row->items ==0)
                                     continue;
 								$orderId = $row->order_id;
@@ -43,8 +43,8 @@
                                 $orderItemQuery = "SELECT * FROM tbl_order_item as toi LEFT JOIN tbl_product_price as tpp ON toi.product_id=tpp.product_id AND toi.color_id=tpp.color_id WHERE toi.order_id=".$row->order_id;
                                 //echo $orderItemQuery."<br>";
                                 $canChangeToConfirm = true;
-                                $orderItemRs = mysql_query($orderItemQuery, $con);
-                                while($orderItem = mysql_fetch_object($orderItemRs)) {
+                                $orderItemRs = mysqli_query($con, $orderItemQuery);
+                                while($orderItem = mysqli_fetch_object($orderItemRs)) {
                                     if ($orderItem->od_qty > $orderItem->qty) {
                                         $canChangeToConfirm = false;
                                     }
@@ -272,7 +272,7 @@
                                         WHERE toi.order_id = '$orderId' and toi.isbackOrd=1
                                         GROUP BY toi.product_id, toi.color_id";
                                         $oiRs = exec_query($oiQuery, $con);
-                                        while($oiRow = mysql_fetch_object($oiRs)){
+                                        while($oiRow = mysqli_fetch_object($oiRs)){
                                         
                                             $qty = $oiRow->od_qty;
                                             $priceFull = $oiRow->product_price;

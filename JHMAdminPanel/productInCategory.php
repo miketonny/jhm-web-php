@@ -18,7 +18,7 @@ $catId = $_GET['data1'];
                                 <option value=""></option>
                                 <?php
                                 $cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-                                while($cat_row = mysql_fetch_object($cat_rs)){ ?>
+                                while($cat_row = mysqli_fetch_object($cat_rs)){ ?>
                                     <option <?php if(isset($_POST['filter'])){ if($_POST['mainCategory'] == $cat_row->category_id){ echo $sel; } } ?> value="<?php echo $cat_row->category_id;?>"><?php echo $cat_row->category_name;?></option>
                                 <?php }?>
                             </select>
@@ -85,7 +85,7 @@ $catId = $_GET['data1'];
                 WHERE tpcat.category_id = '$catId'
                 GROUP BY tbl_product.product_id";
                 $rs_pro = exec_query($query, $con);
-                while($row_pro = mysql_fetch_object($rs_pro)){ $stat = $row_pro->is_activate;
+                while($row_pro = mysqli_fetch_object($rs_pro)){ $stat = $row_pro->is_activate;
                     /* for show cat, sub cat, sub sub cat */
                     /*$strr = '';
                     $catArr = array();

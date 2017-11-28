@@ -22,8 +22,8 @@
 							$i = 1;
 							/*$query = "SELECT tbl_size.*, tbl_category.category_name FROM tbl_size LEFT JOIN tbl_category ON tbl_category.category_id = tbl_size.subcategory_id ORDER BY subcategory_id";*/
 							$query = "SELECT tbl_size.* FROM tbl_size ORDER BY size";
-							$rs_si = mysql_query($query, $con);
-							while($row_si = mysql_fetch_object($rs_si)){
+							$rs_si = mysqli_query($con, $query);
+							while($row_si = mysqli_fetch_object($rs_si)){
 							?>
 								<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 									<td><?php echo $i; ?></td>

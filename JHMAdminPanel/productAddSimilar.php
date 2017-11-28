@@ -12,7 +12,7 @@ $pro = getProduct($id, $con);
 $chk = 'checked="checked"';
 $sel = 'selected="selected"';
 $cat_rs = exec_query("select category_id from tbl_product_category WHERE product_id = '$id'", $con);
-while($cat_row = mysql_fetch_object($cat_rs)){ $catArr[] = $cat_row->category_id; }
+while($cat_row = mysqli_fetch_object($cat_rs)){ $catArr[] = $cat_row->category_id; }
 $sCatOp = ''; $ssCatOp = ''; $sCats = '';
 $mCats = array();
 $pColor = array();
@@ -51,7 +51,7 @@ if(!empty($tempSubArr)){
 
 /* get color */
 $proColRs = exec_query("SELECT color_code FROM tbl_product_color WHERE product_id = '$id'", $con);
-while($proColRow = mysql_fetch_object($proColRs)){ $pColor[] = $proColRow->color_code; }
+while($proColRow = mysqli_fetch_object($proColRs)){ $pColor[] = $proColRow->color_code; }
 ?>
         <div class="warper container-fluid">
             <div class="page-header"><h1>Product <small>Add New Product</small></h1></div>
@@ -69,7 +69,7 @@ while($proColRow = mysql_fetch_object($proColRs)){ $pColor[] = $proColRow->color
 											<option value=""></option>
 											<?php
 											$cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-											while($cat_row = mysql_fetch_object($cat_rs)){ ?>
+											while($cat_row = mysqli_fetch_object($cat_rs)){ ?>
 												<option
 												<?php echo (in_array($cat_row->category_id, $mCats) || in_array($cat_row->category_id, $catArr))?$sel:''; ?>
                                                 value="<?php echo $cat_row->category_id; ?>"><?php echo $cat_row->category_name; ?></option>
@@ -113,7 +113,7 @@ while($proColRow = mysql_fetch_object($proColRs)){ $pColor[] = $proColRow->color
 										<select class="form-control" required name="brand" id="brandSel" onchange="getColorfromBrand(this.value);">
 											<option value="">- SELECT BRAND -</option>
 											<?php $br_rs = exec_query("SELECT * FROM tbl_brand ORDER BY brand_name", $con);
-											while($br_row = mysql_fetch_object($br_rs)){ ?>
+											while($br_row = mysqli_fetch_object($br_rs)){ ?>
 												<option <?php getSelected($br_row->brand_id, $pro->brand_id); ?> value="<?php echo $br_row->brand_id;?>"><?php echo $br_row->brand_name; ?></option>
 											<?php }?>
 										</select>
@@ -233,7 +233,7 @@ while($proColRow = mysql_fetch_object($proColRs)){ $pColor[] = $proColRow->color
                                     <div class="col-sm-9" id="colorpallet">
                                     <?php $iCol = 1;
                                     $col_rs = exec_query("SELECT * FROM tbl_color WHERE (brand = '$pro->brand_id' OR color_code = '#ffffff') ORDER BY color", $con);
-                                    while($col_row = mysql_fetch_object($col_rs)){
+                                    while($col_row = mysqli_fetch_object($col_rs)){
 									?>
                                         <input id="color<?php echo $iCol; ?>" type="checkbox" value="<?php echo $col_row->color_code; ?>" name="color[]" <?php if(in_array($col_row->color_code, $pColor)){ echo $chk; } ?> />
                                         <label for="color<?php echo $iCol; ?>" style="background-color:<?php echo $col_row->color_code; ?>" class="tooltip-btn" data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $col_row->color; ?>">
@@ -259,7 +259,7 @@ while($proColRow = mysql_fetch_object($proColRs)){ $pColor[] = $proColRow->color
                                         <select class="form-control" name="sizeUnit" style="width: 196px;">
 											<option value="">- SELECT SIZE UNIT -</option>
 											<?php $si_rs = exec_query("SELECT * FROM tbl_size ORDER BY size", $con);
-											while($si_row = mysql_fetch_object($si_rs)){ ?>
+											while($si_row = mysqli_fetch_object($si_rs)){ ?>
 												<option <?php if($sizeUnit == $si_row->size){ echo $sel; } ?> value="<?php echo $si_row->size; ?>"><?php echo $si_row->size; ?></option>
 											<?php } ?>
 										</select>

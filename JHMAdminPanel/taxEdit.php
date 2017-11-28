@@ -1,7 +1,7 @@
 <?php include 'include/header.php';
 chkParam($_GET['data1'], 'home.php');
 $id = $_GET['data1'];
-$tax = mysql_fetch_object(exec_query("SELECT * FROM tbl_tax WHERE recid = '$id'", $con));
+$tax = mysqli_fetch_object(exec_query("SELECT * FROM tbl_tax WHERE recid = '$id'", $con));
 ?>
         <div class="warper container-fluid">
             <div class="page-header"> <h1>Tax <small>Edit Tax</small></h1> </div>

@@ -23,7 +23,7 @@ $chk = 'checked="checked"';
                                     <optgroup label="---">
                                         <?php
                                         $cat_rs = exec_query("SELECT category_id, category_name FROM tbl_category WHERE parent_id = 0 AND superparent_id = 0 ORDER BY category_name", $con);
-                                        while ($cat_row = mysql_fetch_object($cat_rs)) {
+                                        while ($cat_row = mysqli_fetch_object($cat_rs)) {
                                             ?>
                                             <option <?php getSelected($cat->superparent_id, $cat_row->category_id); ?> value="<?php echo $cat_row->category_id; ?>"><?php echo $cat_row->category_name; ?></option>
                                         <?php } ?>
@@ -119,14 +119,14 @@ $chk = 'checked="checked"';
                                 <!-- -0-------------- -->
                                 <?php
                                 $rsImg = getCategoryImg($id, $con);
-                                if (mysql_num_rows($rsImg) > 0) {
+                                if (mysqli_num_rows($rsImg) > 0) {
                                     ?>
                                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                         <div class="carousel-inner">
                                             <?php
                                             $ol = '';
                                             $i = 0;
-                                            while ($rowImg = mysql_fetch_object($rsImg)) {
+                                            while ($rowImg = mysqli_fetch_object($rsImg)) {
                                                 $active = ($i == 0) ? 'active' : '';
                                                 $ol .= '<li data-target="#carousel-example-generic" data-slide-to="' . $i . '" class="' . $active . '"></li>';
                                                 ?>

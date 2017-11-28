@@ -1,7 +1,7 @@
 <?php include 'include/header.php';
 chkParam($_GET['data1'], 'home.php');
 $id = $_GET['data1'];
-$manager = mysql_fetch_object(mysql_query("SELECT * FROM admin WHERE recid = '$id'"));
+$manager = mysqli_fetch_object(mysqli_query($con, "SELECT * FROM admin WHERE recid = '$id'"));
 ?>
 <style> .hide1{ display:none; } .inline1{ display:inline; } </style>
         <div class="warper container-fluid">
@@ -43,9 +43,9 @@ $manager = mysql_fetch_object(mysql_query("SELECT * FROM admin WHERE recid = '$i
 									$sel = 'selected="selected"';
 									$add = ''; $edit = ''; $read = ''; $status = '';
 									$chk = '';
-									$chkPermission = mysql_query("SELECT * FROM tbl_permission WHERE user_id = '".$id."' AND permission = '$key'");
-									if(mysql_num_rows($chkPermission)){
-										$row = mysql_fetch_object($chkPermission);
+									$chkPermission = mysqli_query($con, "SELECT * FROM tbl_permission WHERE user_id = '".$id."' AND permission = '$key'");
+									if(mysqli_num_rows($chkPermission)){
+										$row = mysqli_fetch_object($chkPermission);
 										$add = $row->add;
 										$edit = $row->edit;
 										$read = $row->read;

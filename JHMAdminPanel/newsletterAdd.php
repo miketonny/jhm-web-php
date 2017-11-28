@@ -1,7 +1,7 @@
 <?php include 'include/header.php';
 /* email templkatre */
 $rsEmail = exec_query("SELECT * FROM tbl_email_template WHERE type = 'newsletter'", $con);
-$rowEmail = mysql_fetch_object($rsEmail);
+$rowEmail = mysqli_fetch_object($rsEmail);
 $content = $rowEmail->content;
 $contentHTML = html_entity_decode($content);
 $subject = '';
@@ -9,7 +9,7 @@ $subject = '';
 if(isset($_GET['data1']) && $_GET['data1'] != ''){
 	$id = $_GET['data1'];
 	$rs1 = exec_query("SELECT * FROM tbl_newsletter WHERE recid = '$id'", $con);
-	$row1 = mysql_fetch_object($rs1);
+	$row1 = mysqli_fetch_object($rs1);
 	$content = html_entity_decode($row1->content);
 	$subject = $row1->subject;
 }
@@ -52,7 +52,7 @@ else{
                             <select class="form-control" name="nid" required>
                                 <option value="">- SELECT NEWSLETTER -</option>
                                 <?php $rs1 = exec_query("SELECT * FROM tbl_email_template WHERE type = 'newsletter'", $con);
-                                while($row1 = mysql_fetch_object($rs1)){
+                                while($row1 = mysqli_fetch_object($rs1)){
                                     echo '<option value="'.$row1->recid.'">'.$row1->title.' ('.date('d M, Y h:i A', strtotime($row1->datetime)).')</option>';
                                 }?>
                             </select>
@@ -83,7 +83,7 @@ else{
                                             <tr>
                                             <?php $ii = 1;
                                             $rs = exec_query("SELECT email FROM tbl_user_newsletter", $con);
-											while($row = mysql_fetch_object($rs)){ ?>
+											while($row = mysqli_fetch_object($rs)){ ?>
 												
                                                 <td class="tdd">
                                                 	<input type="checkbox" name="email[]" value="<?php echo $row->email; ?>" />
@@ -128,8 +128,8 @@ else{
 							<?php
 							$i = 1;
 							$query = "SELECT * FROM tbl_newsletter ORDER BY recid DESC";
-							$rs = mysql_query($query, $con);
-							while($row = mysql_fetch_object($rs)){
+							$rs = mysqli_query($con, $query);
+							while($row = mysqli_fetch_object($rs)){
 							?>
 								<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>
 									<td><?php echo $i; ?></td>

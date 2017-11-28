@@ -11,7 +11,7 @@ chkParam($_GET['data1'], 'productAdd.php'); ?>
 
 /* get product name */
 $proRs = exec_query('SELECT product_name FROM tbl_product WHERE product_id = '.$id, $con);
-$pro = mysql_fetch_object($proRs);
+$pro = mysqli_fetch_object($proRs);
 
 /* for add similar */
 $sel = 'selected="selected"';
@@ -111,7 +111,7 @@ if(isset($_GET['dataCopy']) && $_GET['dataCopy'] != ''){
 											<option value=""></option>
 											<?php
 											$tag_rs = exec_query("SELECT title FROM tbl_tag ORDER BY title", $con);
-											while($tag_row = mysql_fetch_object($tag_rs)){ ?>
+											while($tag_row = mysqli_fetch_object($tag_rs)){ ?>
 												<option <?php echo (in_array($tag_row->title, $taggArr))?$sel:''; ?>><?php echo $tag_row->title;?></option>
 											<?php } ?>
 										</select>

@@ -24,8 +24,8 @@
 							<?php
 							$i = 1;
 							$query = "SELECT tr.*, tu.email, tp.product_name FROM tbl_review tr LEFT JOIN tbl_user tu ON tu.user_id = tr.user_id LEFT JOIN tbl_product tp ON tp.product_id = tr.product_id ORDER BY datetime DESC";
-							$rs = mysql_query($query, $con);
-							while($row = mysql_fetch_object($rs)){
+							$rs = mysqli_query($con, $query);
+							while($row = mysqli_fetch_object($rs)){
 								$appr = $row->is_approve;
 							?>
 								<tr <?php if($i%2 == 0){ echo 'class="info"'; } ?>>

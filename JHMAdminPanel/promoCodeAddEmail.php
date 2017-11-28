@@ -67,7 +67,7 @@ $id = $_GET['data1'];
 include 'include/formJs.php'; ?>
 <?php $emailArr = array();
 $email_rs = exec_query("SELECT email FROM tbl_user", $con);
-while($email_row = mysql_fetch_object($email_rs)){ $emailArr[] = $email_row->email; }
+while($email_row = mysqli_fetch_object($email_rs)){ $emailArr[] = $email_row->email; }
 $email = implode(',', $emailArr);
 ?>
 <script>

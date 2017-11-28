@@ -3,8 +3,8 @@ $content = '';
 if(isset($_GET['data1']) && $_GET['data1'] != ''){
 	$id = $_GET['data1'];
 	$rs = exec_query("SELECT * FROM tbl_email_template WHERE recid = '$id'", $con);
-	if(mysql_num_rows($rs)){
-		$row = mysql_fetch_object($rs);
+	if(mysqli_num_rows($rs)){
+		$row = mysqli_fetch_object($rs);
 		$content = html_entity_decode($row->content);
 	}
 }
@@ -66,7 +66,7 @@ $sel = 'selected="selected"';
                         <select class="form-control" name="type" required>
                             <option value="">- SELECT TEMPLATE TYPE -</option>
                             <?php $si_rs = exec_query("SELECT type FROM tbl_email_template ORDER BY type", $con);
-                            while($si_row = mysql_fetch_object($si_rs)){ ?>
+                            while($si_row = mysqli_fetch_object($si_rs)){ ?>
                                 <option <?php if($row->type == $si_row->type){ echo $sel; } ?>><?php echo $si_row->type; ?></option>
                             <?php } ?>
                         </select>

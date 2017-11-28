@@ -5,9 +5,9 @@ include '../include/function.php';
 
 $email = tres($_POST['email']);
 
-$rs = mysql_query("SELECT recid, email, password, username FROM admin WHERE (username = '$email') OR (email = '$email')", $con);
-if(mysql_num_rows($rs)){
-	$row = mysql_fetch_object($rs);
+$rs = mysqli_query($con, "SELECT recid, email, password, username FROM admin WHERE (username = '$email') OR (email = '$email')");
+if(mysqli_num_rows($rs)){
+	$row = mysqli_fetch_object($rs);
 	//$pass = $row->password;
 	
 	/* send reset mail */

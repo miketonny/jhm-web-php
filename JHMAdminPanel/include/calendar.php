@@ -4,8 +4,8 @@ $arrayOrder = array();
 $arrayJSON = array();
 $orderQ = "SELECT order_id, od_date, amount, status FROM tbl_order WHERE payment_status = 'Paid'";
 $orderRs = exec_query($orderQ, $con);
-if(mysql_num_rows($orderRs)){
-	while($order = mysql_fetch_object($orderRs)){ $oStatus = ''; $class = '';
+if(mysqli_num_rows($orderRs)){
+	while($order = mysqli_fetch_object($orderRs)){ $oStatus = ''; $class = '';
 		$date = strtotime($order->od_date).'000';
 		$no = getOrderId($order->order_id);
 		$status = $order->status;

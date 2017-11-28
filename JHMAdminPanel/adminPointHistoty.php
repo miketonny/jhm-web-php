@@ -22,9 +22,9 @@
 						LEFT JOIN tbl_user tu ON tu.user_id = tup.user_id
 						LEFT JOIN tbl_order ord ON ord.order_id = tup.order_id
 						ORDER BY tup.datetime DESC";
-						$rs = mysql_query($query, $con);
-						while($row = mysql_fetch_object($rs)){
-							$orderNo = getOrderId($row->order_id);
+						$rs = mysqli_query($con, $query);
+						while($row = mysqli_fetch_object($rs)){
+							$orderNo = getOrderId($row->order_id, $con);
 						?>
 							<tr <?php if($row->point > 0){ echo 'class="success"'; }else{ echo 'class="danger"'; } ?> >
 								<td><?php echo $i; ?></td>

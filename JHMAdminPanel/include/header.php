@@ -1,6 +1,8 @@
 <?php
 //setcookie('PHPSESSID', session_id(), 0, '/');
-session_start();
+if (!isset($_SESSION)) {
+      session_start();
+}
 include '../include/config.php';
 include '../include/function.php';
 if(!isset($_SESSION['admin']) || $_SESSION['admin'] == '' || empty($_SESSION['admin'])){ redirect('index.php'); }
