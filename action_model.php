@@ -979,25 +979,15 @@ function checkOutNow($con) {
 			$_REQUEST['orderId'] = $orderId; //set the global vars
 			$_REQUEST['totalAmt'] = $amount;
 			$_REQUEST['backordId'] = $backOid;
-			include 'include/PXPayJHM.php';
-			//process_request($orderId, $amount);
-			//        if (!$paymentResult)
-			//        {
-			//            setMessage("Payment failed, please try again.", 'alert alert-error');
-			//            redirect(siteUrl.'failure.php'); die();
-			//        }
-			////successful payment, deduct stock from order/backorder,update qty in product price
-			//        $ordUpdate = mysql_query("UPDATE tbl_product_price tpp INNER JOIN `tbl_order_item` toi ON toi.product_id = tpp.product_id AND toi.color_id = tpp.color_id SET qty = qty - toi.od_qty WHERE order_id = '$orderId'");
-			//        if(isset($backOid) && $backOid > 0){
-			//            $boUpdate = mysql_query("UPDATE tbl_product_price tpp INNER JOIN `tbl_order_item` toi ON toi.product_id = tpp.product_id AND toi.color_id = tpp.color_id SET backorder_qty = backorder_qty - toi.od_qty WHERE order_id = '$backOid'");
-			//        };
-			//        // delete cart product at last
-			//        $delCart = mysql_query("DELETE FROM tbl_cart WHERE user_id = '".$user_id."'");
-			//        redirect(siteUrl.'success/orderId4xip'.$orderId); die(); //now return to order success page and finish
-			//}
-			//else{ setMessage("Some error Occured, Try Again.", 'alert alert-error'); }
-			//}
-			//else{ setMessage("Some error Occured, Try Again.", 'alert alert-error'); }
+			if ($_POST['paymentType'] == 'CreditCard') {
+				 include 'include/PXPayJHM.php'; //credit card payment go through payment express
+			}elseif ($_POST['paymentType'] == 'Wechat') {
+				 //wechat pay
+				 include 'include/WechatPay.php';
+			}else{
+				//nothing?
+			}
+			
 		}
 		// paypal is selected
 		elseif ($_POST['paymentType'] == 'paypal') {

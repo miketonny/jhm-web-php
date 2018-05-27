@@ -286,7 +286,7 @@ if($isLogin){
                 <!-- step 3 end -->
                 
                 <!-- step 4 start -->
-                <button type="button" id="btn-4" class="btnAccordion shipandhandling" onclick="openAccordion(4);">Shipping & Handling</button>
+                <button type="button" id="btn-4" class="btnAccordion shipandhandling" onclick="openAccordion(4);">Shipping & Payment Method</button>
                 <div class="bodyAccordion" id="accordion-4">
                 	<div class="pad15">
                     	<h3>Choose Shipping Method</h3>
@@ -307,6 +307,23 @@ if($isLogin){
                             <li id="overnightHide">
                             	<input type="radio" name="shippingType" value="Overnight" id="overnight" onclick="finalShipping(20)" />
                                	<label for="overnight">Overnight ($ <span id="shipOverNight"></span>)</label>
+                            </li>
+                            <div id="clr"></div>
+                        </ul>
+                        <h3>Choose Shipping Method</h3>
+                        <ul id="payment-method">
+                            <li>
+                                <input type="radio" name="paymentType" value="CreditCard" id="CreditCard" checked="checked"/>
+                                <label for="CreditCard" style="background-size:18%;">
+                                      <img src="<?php echo siteUrl; ?>images/visa.png" alt="visa"/>
+                                </label>
+                              
+                            </li>
+                            <li>
+                                <input type="radio" name="paymentType" value="Wechat" id="Wechat"/>
+                                <label for="Wechat" style="background-size:auto 45%;">
+                                    <img src="<?php echo siteUrl; ?>images/wechat.png" height="30px" alt="visa"/>
+                                </label>                      
                             </li>
                             <div id="clr"></div>
                         </ul>

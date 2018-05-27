@@ -4202,6 +4202,30 @@ ul#shipping_radio li input[type=radio]:checked + label{
 	background-size:auto 55%;
 }
 
+ul#payment-method{
+	margin:15px 0px 20px 0px;
+}
+
+ul#payment-method li{
+	display:inline-block;
+	padding:10px 0px 5px 0px;
+}
+
+ul#payment-method li input[type=radio]{
+	display:none;
+}
+
+ul#payment-method li label{
+	background:url(../images/radio_blank.png) no-repeat center left; 
+	margin:10px 20px 10px 0px;
+	padding:10px 10px 10px 35px;
+}
+
+ul#payment-method li input[type=radio]:checked + label{
+	background:url(../images/radio_checked.png) no-repeat center left; 
+}
+
+
 .review{
 	margin-top:30px;
 }

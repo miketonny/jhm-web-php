@@ -3,18 +3,14 @@
 	{
 		"selected_items":
 		[
+			[
+				"tbl_prod",
+				"tbl_product_price"
+			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "JHMAdminPanel/include/sidebar.php",
-			"settings":
-			{
-				"buffer_size": 8609,
-				"line_ending": "Windows"
-			}
-		},
 		{
 			"contents": "",
 			"settings":
@@ -49,10 +45,10 @@
 			}
 		},
 		{
-			"contents": "=> C:\\GitHub\\MichaelZ-Personalstuff\\jhm\\JHMAdminPanel\\include\\header.php\n\t|+| 3\n=> C:\\GitHub\\MichaelZ-Personalstuff\\jhm\\JHMAdminPanel\\productEdit.php\n\t|+| 2\n\t|+| 7\n",
+			"contents": "=> C:\\GitHub\\MichaelZ-Personalstuff\\Christinas\\application\\controllers\\Christinas.php\n\t|+| 40\n\t|+| 71\n\t|+| 105\n=> C:\\GitHub\\MichaelZ-Personalstuff\\jhm\\JHMAdminPanel\\include\\header.php\n\t|+| 3\n=> C:\\GitHub\\MichaelZ-Personalstuff\\jhm\\JHMAdminPanel\\product.php\n\t|+| 259\n\t|+| 282\n\t|+| 307\n\t|+| 334\n\t|+| 420\n=> C:\\GitHub\\MichaelZ-Personalstuff\\jhm\\JHMAdminPanel\\productEdit.php\n\t|+| 2\n\t|+| 7\n",
 			"settings":
 			{
-				"buffer_size": 164,
+				"buffer_size": 386,
 				"line_ending": "Windows",
 				"name": "Xdebug Breakpoint",
 				"read_only": true,
@@ -96,12 +92,32 @@
 	},
 	"expanded_folders":
 	[
-		"/C/GitHub/MichaelZ-Personalstuff/jhm",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/include"
+		"/C/GitHub/MichaelZ-Personalstuff/jhm"
 	],
 	"file_history":
 	[
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/cartRightBar.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/include/header.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/ps_pagination.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/functions.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/function.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/productEdit.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/product.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/cart.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/checkout.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/promotionCalc.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/css/other-page-style.css",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/js/script.js",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/PxPay_Curl.inc.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/PXPayJHM.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/action_model.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/WechatPay.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/admin_action_model.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/style@jhmshop.css",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/.htaccess",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/stocksync.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/cronCleanCart.php",
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/vendor/phpoffice/phpexcel/Classes/PHPExcel/Worksheet.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/include/calendar.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/shipingPrice.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/productInCategory.php",
@@ -125,16 +141,13 @@
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/productAddDetail.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/mailTemplatePreview.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/mailTemplateAdd.php",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/.htaccess",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/login_model.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/include/sidebar.php",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/productEdit.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/promotion.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/promotionAdd.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/promotionEdit.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/promotionMaster.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/reviewAdmin.php",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/admin_action_model.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/adminAjax.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/adminBackOrder.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/admincategory.php",
@@ -159,15 +172,11 @@
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/manager.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/managerPermission.php",
 		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/manageTemplate.php",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/newsletterAdd.php",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/product.php",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/include/header.php",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/function.php",
-		"/C/GitHub/MichaelZ-Personalstuff/jhm/include/ps_pagination.php"
+		"/C/GitHub/MichaelZ-Personalstuff/jhm/JHMAdminPanel/newsletterAdd.php"
 	],
 	"find":
 	{
-		"height": 41.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -181,6 +190,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"tpcat",
+			"paymentType",
+			"payment",
+			"grandTotal",
+			"include",
+			"checkout",
+			"filter",
+			"orderCol",
+			"filter1111",
+			"filter",
+			"var_dump",
+			"exec",
 			"mysql_",
 			"view",
 			"window.open",
@@ -203,16 +224,20 @@
 	"groups":
 	[
 		{
+			"sheets":
+			[
+			]
+		},
+		{
 			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "JHMAdminPanel/include/sidebar.php",
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8609,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -225,7 +250,8 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -233,13 +259,7 @@
 					},
 					"stack_index": 0,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 1,
 					"semi_transient": false,
@@ -267,7 +287,13 @@
 					},
 					"stack_index": 1,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 2,
 					"semi_transient": false,
@@ -295,55 +321,21 @@
 					},
 					"stack_index": 2,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 3,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 386,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 164,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								164,
-								164
+								386,
+								386
 							]
 						],
 						"settings":
@@ -355,7 +347,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]

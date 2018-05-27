@@ -26,11 +26,13 @@ if(!empty($catArr)){
 			
 			/* for show cat */
 			$subCats = getCategory(array('category_name', 'category_id', 'superparent_id'), $sscat->parent_id, $con);
-			if(!in_array($subCats->category_id, $tempSubArr)){
+			if (isset($subCats)) {
+				if(!in_array($subCats->category_id, $tempSubArr)){
 				$tempSubArr[$subCats->category_name] = $subCats->category_id;
 			}
-			$mainCats = getCategory(array('category_name', 'category_id'), $subCats->superparent_id, $con);
-			$mCats[] = $mainCats->category_id;
+				$mainCats = getCategory(array('category_name', 'category_id'), $subCats->superparent_id, $con);
+				$mCats[] = $mainCats->category_id;
+			}		
 		}
 	}
 }

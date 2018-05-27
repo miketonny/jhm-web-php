@@ -66,7 +66,7 @@
                                 ?></strong> GST
                         </h5>
 						<?php if($page == 'cart.php'){?>
-                            <button type="button" class="checkout" onClick="window.location='<?php echo siteUrl; ?>checkOut/';" >GO TO NEXT STEP >></button>
+                            <button type="button" class="checkout" onClick="window.location='<?php echo siteUrl; ?>checkout/';" >CHECKOUT</button>
                         <?php } ?>
                         
                     </li>

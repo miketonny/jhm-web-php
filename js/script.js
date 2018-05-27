@@ -212,7 +212,7 @@ function chkShipnHand(){
 	
 	if(standard.checked == true || saturday.checked == true || rural.checked == true || overnight.checked == true){
 		openAccordion(5);
-	}else{ alert('Please Choose a Shipping Method !'); }
+	}else{ alert('Please Choose a Shipping Method'); }
 }
 
 // function for credit point

@@ -111,7 +111,7 @@ if(isset($prefData->columns)){
                     
                     <div class="form-group">
                         <div class="col-lg-9 col-lg-offset-3">
-                            <button class="btn btn-primary" type="submit" name="filter1111" id="filterBtn" value="filter"> Filter Now ! </button>
+                            <button class="btn btn-primary" type="submit" name="filter1111" id="filterBtn" value="filter">Filter Now</button>
                             <input type="hidden" name="filter" value="filter" />
                             <input type="hidden" name="orderCol" id="orderCol" />
                             <input type="hidden" name="orderType" id="orderType" />
@@ -300,8 +300,9 @@ if(isset($prefData->columns)){
 
                  $query = "SELECT tbl_product.*, tbl_brand.brand_name, tpp.color_id, tpp.product_upc AS upc1 FROM tbl_product
                 LEFT JOIN tbl_brand ON tbl_brand.brand_id = tbl_product.brand_id
-                INNER JOIN tbl_product_price tpp ON tpp.product_id = tbl_product.product_id         
-                WHERE tbl_product.product_id != '' AND tbl_product.is_activate != 4
+                INNER JOIN tbl_product_price tpp ON tpp.product_id = tbl_product.product_id
+                INNER JOIN tbl_product_category tpcat ON tpcat.product_id = tbl_product.product_id         
+                WHERE tbl_product.product_id != '' AND tbl_product.is_activate != 4 $condi
                 Group by tbl_product.product_id";
 				
 				if(isset($_REQUEST['orderType']) && $_REQUEST['orderType'] != '' && isset($_REQUEST['orderCol']) && $_REQUEST['orderCol'] != ''){
@@ -345,8 +346,11 @@ if(isset($prefData->columns)){
                             elseif($level == 'subSubCat'){
                                 $sscat = getCategory(array('category_name', 'parent_id'), $cat, $con);
                                 $scat = getCategory(array('category_name', 'category_id', 'superparent_id'), $sscat->parent_id, $con);
-                                $cat = getCategory(array('category_name'), $scat->superparent_id, $con);
-                                $strr .= ($strr == '')?'':'<br/>'; $strr .= $cat->category_name.' <b>></b> '.$scat->category_name.' <b>></b> '.$sscat->category_name;
+                                if (isset($scat)) {
+                                    $cat = getCategory(array('category_name'), $scat->superparent_id, $con);
+                                    $strr .= ($strr == '')?'':'<br/>'; $strr .= $cat->category_name.' <b>></b> '.$scat->category_name.' <b>></b> '.$sscat->category_name;
+                                }
+                              
                             }
                         }
                         /*if($strr == ''){ //if no category is theree continue; }*/
