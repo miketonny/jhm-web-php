@@ -332,19 +332,19 @@ where tbl_promotion.start_date <='$time' and tbl_promotion.end_date>='$time' and
                         <div class="dropdown-menu mega-dropdown-menu" > 
                             <div class="menu-row"> 
                                 <ul> 
-                                    <li> <a href="<?php echo siteUrl; ?>all/0-0FACE//">FACE MAKEUP</a></li> 
-                                    <li> <a href="#">EYE MAKEUP</a></li> 
-                                    <li> <a href="#">LIPS</a></li> 
-                                    <li> <a href="<?php echo siteUrl; ?>all/0-0NAILS//">NAILS</a></li> 
+                                    <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=39">FACE MAKEUP</a></li> 
+                                    <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=25">EYE MAKEUP</a></li> 
+                                    <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=92">LIPS</a></li> 
+                                    <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=121">NAILS</a></li> 
                                 </ul> 
                                 <ul> 
-                                    <li> <a href="#">BODY &nbsp; COMAUFLAGE </a></li> 
-                                    <li> <a href="#">MAKEUP</a></li> 
-                                    <li> <a href="#">Makeup Sets</a></li> 
-                                    <li> <a href="#">See All</a></li> 
+                                    <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=4">BODY &nbsp; COMAUFLAGE </a></li> 
+                                    <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=39">MAKEUP</a></li> 
+                                    <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=106">Makeup Sets</a></li> 
+                                   <!-- <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=25">See All</a></li> -->
                                 </ul> 
                                 <ul> 
-                                    <li> <a href="#"><img src="<?php echo siteUrl; ?>images/new/c-logo1.png" alt=""></a></li> 
+                                    <li> <a href="<?php echo siteUrl; ?>product-search?cat_id=39"><img src="<?php echo siteUrl; ?>images/new/c-logo1.png" alt=""></a></li> 
                                     <li> <a href="#"><img src="<?php echo siteUrl; ?>images/new/c-logo2.png" alt=""></a></li> 
                                 </ul> 
                                 <ul> 

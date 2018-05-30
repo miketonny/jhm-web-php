@@ -62,26 +62,27 @@ if(!empty($promoArr)){
                         <div class="feture-grid">
                             <?php
                             
-                            if($promotedProduct->product_rrp > 0 && ($promoType == '' && $promoValue == '') && ($promotedProduct->product_rrp!=$promotedProduct->product_price) && ($promotedProduct->product_rrp > $promotedProduct->product_price)){
+                        if($promotedProduct->product_rrp > 0 && ($promoType == '' && $promoValue == '') && ($promotedProduct->product_rrp!=$promotedProduct->product_price) && ($promotedProduct->product_rrp > $promotedProduct->product_price)){
                                
                             $off = (($promotedProduct->product_rrp - $promotedProduct->product_price) / $promotedProduct->product_rrp) * 100;
-                            
+                            if(!$off==0){
                                 ?>
                                 <div class="discount hh"> <span><?php echo substr($off, 0, 2); ?>% OFF</span></div>
                                 <?php
                             }
+                            }
                             if($promoType != '' && $promoValue != ''){
 							if($promoType == 'percent'){ 
-							
-							$disPrice = $promotedProduct->product_price-round((($promotedProduct->product_price * $promoValue) / 100), 3);
-							$discount=str_replace(".00", "",$promoValue)."% <br/>Off";
-						}elseif($promoType == 'amount'){
-							$disPrice = $promotedProduct->product_price - $promoValue; 
-							$discount = "Save $".$promoValue; 
-						}
+    							$disPrice = $promotedProduct->product_price-round((($promotedProduct->product_price * $promoValue) / 100), 3);
+    							$discount=str_replace(".00", "",$promoValue)."% <br/>Off";
+    						}elseif($promoType == 'amount'){
+    							$disPrice = $promotedProduct->product_price - $promoValue; 
+    							$discount = "Save $".$promoValue; 
+    						}
+                            if ($discount!="0% <br/>Off" && $discount!="Save $0") {      
                             ?>
                                 <div class="discount tt"> <span><?php echo $discount;?></span></div>
-                            <?php } ?>
+                            <?php   }} ?>
                             <a href="<?php echo siteUrl; ?>detail/<?php echo $promotedProduct->product_id; ?>HXYK<?php echo $promotedProduct->slug; ?>TZS1YL<?php echo $promotedProduct->color_id; ?>" class="">
                                 <img style="max-width: 100%;height:200px;" src="<?php echo siteUrl . $img; ?>" class="center-block img-style" >
                             </a>
