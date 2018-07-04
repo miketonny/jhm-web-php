@@ -310,7 +310,7 @@ if($isLogin){
                             </li>
                             <div id="clr"></div>
                         </ul>
-                        <h3>Choose Shipping Method</h3>
+                        <h3>Choose Payment Method</h3>
                         <ul id="payment-method">
                             <li>
                                 <input type="radio" name="paymentType" value="CreditCard" id="CreditCard" checked="checked"/>
@@ -322,7 +322,13 @@ if($isLogin){
                             <li>
                                 <input type="radio" name="paymentType" value="Wechat" id="Wechat"/>
                                 <label for="Wechat" style="background-size:auto 45%;">
-                                    <img src="<?php echo siteUrl; ?>images/wechat.png" height="30px" alt="visa"/>
+                                    <img src="<?php echo siteUrl; ?>images/wechat.png" height="30px" alt="wechat"/>
+                                </label>                      
+                            </li>
+                            <li>
+                                <input type="radio" name="paymentType" value="Alipay" id="Alipay"/>
+                                <label for="Alipay" style="background-size:auto 45%;">
+                                    <img src="<?php echo siteUrl; ?>images/alipay.png" height="35px" alt="alipay"/>
                                 </label>                      
                             </li>
                             <div id="clr"></div>
@@ -423,7 +429,6 @@ if($isLogin){
                                 </tr>
                                 
                                 <tr>
-                                	<!--<td colspan="4" align="right">GST (<?php $gst = getGst(); echo $gst; ?> %)</td>-->
 									<td colspan="4" align="right">Includes Tax</td>
                                     <td align="right"> $ <?php echo formatCurrency($grandPlusPromotion*.15);//formatCurrency($amGst); ?></td>
                                 </tr>

@@ -1,16 +1,20 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require __DIR__ . "/vendor/autoload.php";
 ///generates QR code for wechat/alipay then redirect to let client to pay for the order
 function getQR(){ 
     //payplus credentials etc ====================================================
     $bizID = 29;
     $intToken = 'gpI3wXspE49xfYXUmmIoz9xRjEOxXzzVwPGDOsxDzuGFAa4xnM9X8dUceWCVQPTc';
-    $feeTotal = 0.01; //total charged
+    // $feeTotal = $_SESSION['totalAmt'];
+    $feeTotal = 0.01; //total charged, dev mode use 0.01
     $saleId = $_GET['ordId'];
     $title = 'JHM Ltd Payment';
     $type = $_GET['type'];
     $time = time();
-    $nonce = $rand = substr(md5(microtime()),rand(0,26),16);; //16 random chars
+    $nonce = substr(md5(microtime()),rand(0,26),16);; //16 random chars
     $API; 
     //pattern /biz_id/fee_total/sale_id/title/time/nonce/sign'; 
     if($type == 'wechat'){
@@ -37,11 +41,14 @@ function getQR(){
         QRcode::png(urldecode($res['code_url']), $filePath, QR_ECLEVEL_H, 6, 0); //write to temp file
         $qrImage = file_get_contents($filePath);
         unlink($filePath); //remove temp file
-        //set the cookies of otn and qrcode 
-        setcookie("otn", $res['out_trade_no']);
-        setcookie("qrstring", base64_encode($qrImage)); 
+        //set the session variables of otn and qrcode 
+        $_SESSION['otn'] = $res['out_trade_no'];
+        $_SESSION['QRString'] = base64_encode($qrImage); 
+        $_SESSION['type'] = $type;
+        // setcookie("otn", $res['out_trade_no']);
+        // setcookie("qrstring", base64_encode($qrImage)); 
         //redirect to payment page for user to scan on .. 
-        header('Location: ../wechatcode/'. $saleId); 
+        header('Location: ../qrpayment/'. $saleId); 
         die();
     }else{
         header('Location: ../paymentfailed'); 

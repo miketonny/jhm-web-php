@@ -5701,7 +5701,7 @@ span.parameter strong{
 	border:1px solid #d3d3d3;
 	max-height:0px;
 	overflow:hidden;
-	text-align:left:	
+	text-align:left;
 }
 
 #questionWrapper input[type=text],
@@ -5812,4 +5812,3 @@ span.backorderLine strong{
 	padding:0px 10px;
 	background:#fff;
 }
-

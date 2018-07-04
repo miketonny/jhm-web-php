@@ -68,7 +68,7 @@ include("include/functions.php");
 						}
 					?>
             		<li>
-						<span class="price"><?php echo $deal->percent_or_amount == 'percent' ? .$deal-> promo_value.'% OFF' : '$'.$deal->promo_value; ?></span>
+						<span class="price"><?php echo $deal->percent_or_amount == 'percent' ? $deal-> promo_value.'% OFF' : '$'.$deal->promo_value; ?></span>
                         <p class="bar">
                         	<a href="<?php echo siteUrl; ?>product-promotion/<?php echo $deal->slug; ?>/" class="buynow">Buy Now</a>							
                             <span class="countdown" id="promoid<?php echo $deal->promo_id; ?>">

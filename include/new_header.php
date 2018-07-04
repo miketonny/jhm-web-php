@@ -243,7 +243,7 @@ if (isset($userID) && $userID != '') {
 <?php 
 //echo "<pre>";
 //print_r($_SESSION);exit;
-if(@$_SESSION['message']!=""){
+if(isset($_SESSION['message']) || @$_SESSION['message'] != ""){
     echo $_SESSION['message'];
      echo "<script>";
    echo "hide_msg();";

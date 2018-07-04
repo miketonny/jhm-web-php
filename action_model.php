@@ -979,11 +979,17 @@ function checkOutNow($con) {
 			$_REQUEST['orderId'] = $orderId; //set the global vars
 			$_REQUEST['totalAmt'] = $amount;
 			$_REQUEST['backordId'] = $backOid;
+			$_SESSION['totalAmt'] = $amount;
+			$_SESSION['backOrderId'] = $backOid;		
+			$_SESSION['orderId'] = $orderId; //used in check status page
 			if ($_POST['paymentType'] == 'CreditCard') {
 				 include 'include/PXPayJHM.php'; //credit card payment go through payment express
 			}elseif ($_POST['paymentType'] == 'Wechat') {
 				 //wechat pay
-				 include 'include/WechatPay.php';
+				 header("Location: ". siteUrl . "/wechatpayment/" . $orderId);
+			}elseif ($_POST['paymentType'] == 'Alipay') {
+				//alipay
+				 header("Location: ". siteUrl . "/alipaypayment/" . $orderId);
 			}else{
 				//nothing?
 			}

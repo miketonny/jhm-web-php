@@ -68,8 +68,10 @@ function getPromotionForProduct($product_id, $brand_id, $all_cat, $con){
 				elseif($level == 'subSubCat'){
 					$subSubCat = getCategory(array('parent_id'), $cat, $con); /* sub sub cats parent is sub Cat (parent_id) */
 					$subcat = getCategory(array('superparent_id'), $subSubCat->parent_id, $con);  /* sub cats parent is main Cat (superparent_id) */
-					$qCat .= " FIND_IN_SET('$subSubCat->parent_id', promo_det.ids) > 0 OR FIND_IN_SET('$subcat->superparent_id', promo_det.ids) > 0 OR ";
-					$qBr .= " FIND_IN_SET('$subSubCat->parent_id', promo_det.category_id) > 0 OR FIND_IN_SET('$subcat->superparent_id', promo_det.category_id) > 0 OR ";
+					if($subSubCat && $subcat){
+						$qCat .= " FIND_IN_SET('$subSubCat->parent_id', promo_det.ids) > 0 OR FIND_IN_SET('$subcat->superparent_id', promo_det.ids) > 0 OR ";
+						$qBr .= " FIND_IN_SET('$subSubCat->parent_id', promo_det.category_id) > 0 OR FIND_IN_SET('$subcat->superparent_id', promo_det.category_id) > 0 OR ";
+					}				
 				}
 				/* for product category promotion - default */
 				$qCat .= " FIND_IN_SET('$cat', promo_det.ids) > 0 ";
@@ -666,7 +668,7 @@ function logMessage($message, $con){
 }
 
 function fetchRandomToken(){
-	return random_int(1000001, 9999999);
+	return rand(1000001, 9999999);
 }
 
 /* function for chk sll login, means secure */
