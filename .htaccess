@@ -99,3 +99,6 @@ RewriteRule ^success/([\w-]+) success.php?ordId=$1
 RewriteRule ^paypalSucc/([\w-]+) paypalSucc.php?ordId=$1
 RewriteRule ^paypalFail/([\w-]+) paypalFail.php?ordId=$1
 RewriteRule paymentfailed failure.php
+
+RewriteRule ^wechatpayment/([\w-]+) qrcodepayment.php?ordId=$1&type=wechat
+RewriteRule ^wechatcode/([\w-]+) qrpayment.php?ordId=$1

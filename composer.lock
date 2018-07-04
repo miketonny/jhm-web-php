@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "50489714dc35b8c5a19828e5fdb18e98",
+    "content-hash": "1a39054572af63547445e023d5777437",
     "packages": [
         {
             "name": "phpoffice/phpexcel",
@@ -61,7 +61,46 @@
                 "xls",
                 "xlsx"
             ],
+            "abandoned": "phpoffice/phpspreadsheet",
             "time": "2015-05-01T07:00:55+00:00"
+        },
+        {
+            "name": "ziplr/php-qr-code",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ziplr/php-qr-code.git",
+                "reference": "dac8f3da6eaf0ee22fab85fae8eb16db8ab7da73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ziplr/php-qr-code/zipball/dac8f3da6eaf0ee22fab85fae8eb16db8ab7da73",
+                "reference": "dac8f3da6eaf0ee22fab85fae8eb16db8ab7da73",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": [],
+                "files": [
+                    "src/qrconst.php",
+                    "src/qrconfig.php",
+                    "src/qrtools.php",
+                    "src/qrspec.php",
+                    "src/qrimage.php",
+                    "src/qrinput.php",
+                    "src/qrbitstream.php",
+                    "src/qrsplit.php",
+                    "src/qrrscode.php",
+                    "src/qrmask.php",
+                    "src/qrencode.php",
+                    "src/qrarea.php",
+                    "src/qrcanvas.php",
+                    "src/qrsvg.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "PHP Qr Code Generator compatible with php 7.0",
+            "time": "2017-07-22T08:29:31+00:00"
         }
     ],
     "packages-dev": [],

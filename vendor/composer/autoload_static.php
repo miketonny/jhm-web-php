@@ -6,6 +6,23 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit9a47d34f7a710c49810724062f60d0b1
 {
+    public static $files = array (
+        '09f3eb77356feb43e3ff26128ee984dc' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrconst.php',
+        '7ea152209b6d6f6a9c379bb5777c0ff9' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrconfig.php',
+        '0c73d356ebe9ce34ec2059e5155823be' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrtools.php',
+        'a6b89a5fdd4a45864c9d75fca423fdcb' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrspec.php',
+        '76e161fe34177ecacb03579a570da33b' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrimage.php',
+        '6934d3d3dd2f40f5c944c32fb0e9566b' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrinput.php',
+        '73e13c3d4549528d6df25b21caee9214' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrbitstream.php',
+        '40f3173498d8854542e4bc240d49802c' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrsplit.php',
+        '3c7b74ad213a2a1ab62a229331ccfd04' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrrscode.php',
+        '82d47331eef5f250db6555d8f44750aa' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrmask.php',
+        '5149e0960d38700a8aac9bc1d73d3744' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrencode.php',
+        '5fef4f446d3e633cd2a9d935ec82b2a3' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrarea.php',
+        '4fc6f9dc41a061719f952ba2ebe7ad91' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrcanvas.php',
+        '5e4857b820d3c9a355e9a1271473e3f9' => __DIR__ . '/..' . '/ziplr/php-qr-code/src/qrsvg.php',
+    );
+
     public static $prefixesPsr0 = array (
         'P' => 
         array (
