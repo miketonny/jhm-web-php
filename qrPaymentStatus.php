@@ -1,11 +1,15 @@
 <?php 
-include 'include/config.php';
-include 'include/functions.php';
+include 'include/config.php'; 
+include 'include/functions.php'; 
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); 
 }
-function getStatus(){
+
+
+echo getStatus($con);
+
+function getStatus($con){
     //request to server
     //payplus credentials
     $bizID = 29;
@@ -36,7 +40,7 @@ function getStatus(){
     if($res['result_code'] == 'SUCCESS'){
         //check if status paid or not and return status
         if($res['state'] === 'SUCCESS'){
-            return updateOrderStats($res['transaction_id'], $res['total_fee']);
+            return updateOrderStats($res['transaction_id'], $res['total_fee'], $con);
         }
         return $res['state']; 
     }else{
@@ -45,7 +49,7 @@ function getStatus(){
 }
 
 //TODO: update order status, clear cart etc.
-function updateOrderStats($tranId, $total_fee){
+function updateOrderStats($tranId, $total_fee, $con){
         if(!isset($_SESSION['orderId'])) return;
         $orderId = $_SESSION['orderId'];
         $boID = isset($_SESSION['backOrderId']) ? $_SESSION['backOrderId'] : 0; 
@@ -80,6 +84,5 @@ function updateOrderStats($tranId, $total_fee){
         }
 }
 
-echo getStatus();
  
 ?>

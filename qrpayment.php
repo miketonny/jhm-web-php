@@ -6,15 +6,6 @@ if (session_status() == PHP_SESSION_NONE) {
 <?php include("include/new_header.php"); ?>
 <style>
     /*wechat/alipay*/
-    .vertical-align {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        align-content: center;
-        align-items: stretch;
-        height: 40rem;
-        text-align: center;
-    }
     #qr-payment>div:first-child{
         margin-bottom: 40px;
     }
@@ -61,29 +52,32 @@ $(document).ready(function() {
     if(orderID === null || orderID === 'undefined'){
         return;
     }
-    //runs a 10sec timer to check the payment status, once the payment has been made, it'll redirect to new success page
-    setInterval(() => {
-        console.log('fetching payment status ------------');
-        $.get("../qrPaymentStatus.php", function(msg) {
+    var fetchPaymentStatus = () => {
+        // console.log('fetching payment status ------------');
+         $.get("../qrPaymentStatus.php", function(msg) {
                 if(msg === 'NOTPAY'){
-                    //stay on current page..
-                    console.log('pending payment');
+                    //stay on current page and keep fetching status
+                    // console.log('pending payment, calling fetch recursively');
+                    setTimeout(fetchPaymentStatus, 3000); //puts a 3sec delay on subsequent calls to server
                 }else if(msg === 'SUCCESS'){
-                    //return to order page..
+                    //payment status change to paid, go ahead and proceed to success page..
                     let rnd = Math.round(Math.random() * 10000000, 0);
                     window.location.replace(`../success/${rnd}${orderID}`);
                 }else if(msg === 'error'){
                     console.log('error occured in fetch status');
-                }   
-        });  
-    }, 10000); 
+                }
+        });
+    }
+    //check status for every 3 seconds
+    fetchPaymentStatus();
 });
 </script>
 
 <div id="qr-payment" class="block-pt5 text-center">
     <div>
-        <h1>Please scan below QR code for payment</h1>
-        <h3>Scan to Pay: <?php echo '$' .(isset($_SESSION['totalAmt']) ? $_SESSION['totalAmt']: '0.00') ?></h3>
+        <h1>Please scan below to make payment</h1>
+        <h3>Scan to Pay: <strong><?php echo '$' .(isset($_SESSION['totalAmt']) ? $_SESSION['totalAmt']: '0.00') ?></strong></h3>
+
     </div>
     <div class="qr-img-wrapper">
         <div><img 
@@ -94,8 +88,11 @@ $(document).ready(function() {
             <div class="col-xs-3"><img src="https://t.alipayobjects.com/images/T1bdtfXfdiXXXXXXXX.png"/></div>
             <div class="col-xs-9">Scan with QR code scanner</div>
         </div>
+ 
     </div>
-   
+    <div class="col-sm-12" style="margin-top: 20px;">
+             <p>page will be redirected automatically after payment, please <strong>do not</strong> refresh the page.</p>
+    </div>
 </div> 
 
 

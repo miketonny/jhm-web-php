@@ -475,7 +475,7 @@ function sendOrderMail($user_id, $orderId, $con){
 		$pricePromotionTotal = 0;
 		$pricePromoCodeTotal = 0;
 
-		$gst = getGst();
+		$gst = getGst($con);
 		$oiQuery = "SELECT toi.*, tp.product_name, tp.slug, tc.color FROM tbl_order_item toi
 		LEFT JOIN tbl_product tp ON tp.product_id = toi.product_id
 		LEFT JOIN tbl_product_color tpc ON tpc.color_id = toi.color_id
