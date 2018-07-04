@@ -982,14 +982,15 @@ function checkOutNow($con) {
 			$_SESSION['totalAmt'] = $amount;
 			$_SESSION['backOrderId'] = $backOid;		
 			$_SESSION['orderId'] = $orderId; //used in check status page
+			unset($_SESSION['paymentstatus']); //reset status upon new order
 			if ($_POST['paymentType'] == 'CreditCard') {
 				 include 'include/PXPayJHM.php'; //credit card payment go through payment express
 			}elseif ($_POST['paymentType'] == 'Wechat') {
 				 //wechat pay
-				 header("Location: ". siteUrl . "/wechatpayment/" . $orderId);
+				 header("Location: ". siteUrl . "wechatpayment/" . $orderId);
 			}elseif ($_POST['paymentType'] == 'Alipay') {
 				//alipay
-				 header("Location: ". siteUrl . "/alipaypayment/" . $orderId);
+				 header("Location: ". siteUrl . "alipaypayment/" . $orderId);
 			}else{
 				//nothing?
 			}

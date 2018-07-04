@@ -41,8 +41,10 @@ function getStatus($con){
         //check if status paid or not and return status
         if($res['state'] === 'SUCCESS'){
             return updateOrderStats($res['transaction_id'], $res['total_fee'], $con);
+        }else{
+            return $res['state']; 
         }
-        return $res['state']; 
+       
     }else{
         return 'error';
     }
@@ -51,6 +53,7 @@ function getStatus($con){
 //TODO: update order status, clear cart etc.
 function updateOrderStats($tranId, $total_fee, $con){
         if(!isset($_SESSION['orderId'])) return;
+        if(isset($_SESSION['paymentstatus']) && $_SESSION['paymentstatus'] == 'paid') return 'SUCCESS';
         $orderId = $_SESSION['orderId'];
         $boID = isset($_SESSION['backOrderId']) ? $_SESSION['backOrderId'] : 0; 
         $order = mysqli_fetch_object(mysqli_query($con, "select * from `tbl_order` WHERE order_id = '".$orderId."'"));
@@ -77,6 +80,7 @@ function updateOrderStats($tranId, $total_fee, $con){
             $delCart = mysqli_query($con, "DELETE FROM tbl_cart WHERE user_id = '".$order->user_id."'"); 
             // $token = fetchRandomToken();
             // redirect(siteUrl.'success/'.$token.$orderId); die(); //now return to order success page and finish
+            $_SESSION['paymentstatus'] = "paid"; //set session data to prevent futher processing
             return "SUCCESS";
         }
         else{

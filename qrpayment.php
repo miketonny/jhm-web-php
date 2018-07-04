@@ -61,7 +61,7 @@ $(document).ready(function() {
                     setTimeout(fetchPaymentStatus, 3000); //puts a 3sec delay on subsequent calls to server
                 }else if(msg === 'SUCCESS'){
                     //payment status change to paid, go ahead and proceed to success page..
-                    let rnd = Math.round(Math.random() * 10000000, 0);
+                    let rnd = Math.floor(Math.random()*8000000+1000000); //random 7digit number to append before orderid
                     window.location.replace(`../success/${rnd}${orderID}`);
                 }else if(msg === 'error'){
                     console.log('error occured in fetch status');
