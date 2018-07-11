@@ -8,8 +8,8 @@ function getQR(){
     //payplus credentials etc ====================================================
     $bizID = 8093;
     $intToken = 'mBjNui40sisiMvFGPSUl8oLO06rcOkKmBT0wzmcTkTnT697IvzdxR1eMRX0hx7pp';
-    // $feeTotal = $_SESSION['totalAmt'];
-    $feeTotal = 0.01; //total charged, dev mode use 0.01
+    $feeTotal = $_SESSION['totalAmt'];
+    // $feeTotal = 0.01; //total charged, dev mode use 0.01
     $saleId = $_GET['ordId'];
     $title = rawurlencode('JHM Ltd Payment');
     $type = $_GET['type'];

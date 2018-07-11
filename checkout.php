@@ -456,7 +456,7 @@ if($isLogin){
                       	</table>
                     </div>
                     <div>
-                    	<button type="submit" class="button button-cntinue" style="margin:-5px 0px 10px 14px" >Place Order</button>
+                    	<button id="order-btn" type="submit" class="button button-cntinue" style="margin:-5px 0px 10px 14px" >Place Order</button>
 	                    <input type="hidden" name="action" value="checkOutNow" />
                     </div>
                 </div>
@@ -508,7 +508,7 @@ function getCreditCardType(accountNumber){
   else if (/^3[47]/.test(accountNumber))  {
     result = "amex";
   }
-  
+
   document.getElementById('card-number').className=" large cc-card-number "+result+"card";
 }
 </script>

@@ -12,8 +12,8 @@ echo getStatus($con);
 function getStatus($con){
     //request to server
     //payplus credentials
-    $bizID = 29;
-    $intToken = 'gpI3wXspE49xfYXUmmIoz9xRjEOxXzzVwPGDOsxDzuGFAa4xnM9X8dUceWCVQPTc'; 
+    $bizID = 8093;
+    $intToken = 'mBjNui40sisiMvFGPSUl8oLO06rcOkKmBT0wzmcTkTnT697IvzdxR1eMRX0hx7pp'; 
     $time = time();
     $otn = $_SESSION['otn'];
     $nonce = substr(md5(microtime()),rand(0,26),16);; //16 random chars
