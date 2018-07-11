@@ -6,8 +6,8 @@ require __DIR__ . "/vendor/autoload.php";
 ///generates QR code for wechat/alipay then redirect to let client to pay for the order
 function getQR(){ 
     //payplus credentials etc ====================================================
-    $bizID = 29;
-    $intToken = 'gpI3wXspE49xfYXUmmIoz9xRjEOxXzzVwPGDOsxDzuGFAa4xnM9X8dUceWCVQPTc';
+    $bizID = 8093;
+    $intToken = 'mBjNui40sisiMvFGPSUl8oLO06rcOkKmBT0wzmcTkTnT697IvzdxR1eMRX0hx7pp';
     // $feeTotal = $_SESSION['totalAmt'];
     $feeTotal = 0.01; //total charged, dev mode use 0.01
     $saleId = $_GET['ordId'];
