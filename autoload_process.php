@@ -18,7 +18,7 @@ if(isset($_REQUEST['searchText']) && $_REQUEST['searchText'] != ''){
 				$catQ = "SELECT category_id FROM `tbl_category` WHERE parent_id IN ($categoryId) OR superparent_id IN ($categoryId)";
 				$catRs = exec_query($catQ, $con);
 				$catArray = array();
-				while($catRow = mysql_fetch_object($catRs)){ $catArray[] = $catRow->category_id; }
+				while($catRow = mysqli_fetch_object($catRs)){ $catArray[] = $catRow->category_id; }
 				$categories = implode(',', $catArray);
 				$categories = ($categories == '')? $categoryId : $categories.','.$categoryId ;
 				$condi .= " AND tpcat.category_id IN ($categories)";
@@ -33,7 +33,7 @@ if(isset($_REQUEST['searchText']) && $_REQUEST['searchText'] != ''){
 					$catQ = "SELECT category_id FROM `tbl_category` WHERE parent_id IN ($categoryId) OR superparent_id IN ($categoryId)";
 					$catRs = exec_query($catQ, $con);
 					$catArray = array();
-					while($catRow = mysql_fetch_object($catRs)){ $catArray[] = $catRow->category_id; }
+					while($catRow = mysqli_fetch_object($catRs)){ $catArray[] = $catRow->category_id; }
 					$categories = implode(',', $catArray);
 					$categories = ($categories == '')? $categoryId : $categories.','.$categoryId ;
 					$condi .= " AND tpcat.category_id IN ($categories)";
@@ -95,7 +95,7 @@ else{
 		$catQ = "SELECT category_id FROM `tbl_category` WHERE parent_id IN ($categoryId) OR superparent_id IN ($categoryId)";
 		$catRs = exec_query($catQ, $con);
 		$catArray = array();
-		while($catRow = mysql_fetch_object($catRs)){ $catArray[] = $catRow->category_id; }
+		while($catRow = mysqli_fetch_object($catRs)){ $catArray[] = $catRow->category_id; }
 		$categories = implode(',', $catArray);
 		$categories = ($categories == '')? $categoryId : $categories.','.$categoryId ;
 		$condi .= " AND tpcat.category_id IN ($categories) ";
@@ -127,8 +127,8 @@ LEFT JOIN tbl_product_price tpp ON tpp.product_id = tpm.product_id
 LEFT JOIN tbl_product_category tpcat ON tpcat.product_id = tp.product_id
 LEFT JOIN tbl_category tblcat ON tpcat.category_id = tblcat.category_id
 WHERE tpm.media_type = 'img' AND tpm.is_main = 1 AND tp.is_activate = 1 $condi Group By tp.product_id $orderBy LIMIT $limit1, $limit2";
-$product_rs = mysql_query($product_q);
-while($row = mysql_fetch_object($product_rs)){
+$product_rs = mysqli_query($con, $product_q);
+while($row = mysqli_fetch_object($product_rs)){
 	// for get promotion
 	$all_cat = $row->all_cat;
 	$promoType = ''; $promoValue = '';

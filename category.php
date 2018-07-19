@@ -392,17 +392,19 @@ if (isset($genderSideBar) && $genderSideBar != '') {
 		// 	$condition = $catID;
 		// }
 		if($condition == null){
-			//checkwhether it has subsubcat
-			$subsubCatsQry = mysqli_query($con, "SELECT category_id, category_name FROM tbl_category WHERE parent_id = '$catID' ORDER BY category_name");
-			if (mysqli_num_rows($subsubCatsQry) > 0) {
-			while($subsubCat = mysqli_fetch_object($subsubCatsQry)){
-				array_push($subCatArray, $subsubCat->category_id);
-				}
-			$condition .= implode(',', array_filter($subCatArray));
-			}else{
-				//lowest level of category reached, use current category id to search
-				$condition = $catID;
-			}
+            //checkwhether it has subsubcat
+            if (isset($catID)){
+                $subsubCatsQry = mysqli_query($con, "SELECT category_id, category_name FROM tbl_category WHERE parent_id = '$catID' ORDER BY category_name");
+                if (mysqli_num_rows($subsubCatsQry) > 0) {
+                while($subsubCat = mysqli_fetch_object($subsubCatsQry)){
+                    array_push($subCatArray, $subsubCat->category_id);
+                    }
+                $condition .= implode(',', array_filter($subCatArray));
+                }else{
+                    //lowest level of category reached, use current category id to search
+                    $condition = $catID;
+                }
+            }else{ $condition = 0;}
 		}
 		$cat_rs = exec_query("SELECT category_name, category_id, slug FROM tbl_category WHERE is_activate = 0 and category_id IN (" . $condition . ") Order By category_name", $con);
 		while ($cat_row = mysqli_fetch_object($cat_rs)) {
@@ -410,7 +412,9 @@ if (isset($genderSideBar) && $genderSideBar != '') {
             <h3 style="background:transparent;border:none;"><a id="subCatRef" href="<?php echo siteUrl; ?>product-search?cat_id=<?php echo $cat_row->category_id ?> " onclick="gotoURL(this);"><?php echo $cat_row->category_name; ?></a></h3>
             <div style="border:none;background:transparent;min-height:0;padding-top:0;">
             <?php
-$sscrs = mysqli_query($con, "SELECT category_id, category_name FROM tbl_category WHERE parent_id = '$cat_row->category_id' AND superparent_id = '$catID' ORDER BY category_name");
+            $cId = isset($catID) ? $catID : 0;
+            $sscrs = mysqli_query($con, "SELECT category_id, category_name FROM tbl_category WHERE parent_id = '$cat_row->category_id' 
+            AND superparent_id = '$cId' ORDER BY category_name");
 			while ($ssCat = mysqli_fetch_object($sscrs)) {?>
 			 
 			 	<div><a href="<?php echo siteUrl; ?>product-search?cat_id=<?php echo $ssCat->category_id ?> "><?php echo $ssCat->category_name; ?></a></div>		
@@ -514,7 +518,13 @@ $catSideRs = exec_query("SELECT category_name, category_id, slug FROM tbl_catego
 			while ($catSideRow = mysqli_fetch_object($catSideRs)) {
 				?>
                                                                         <li>
-                                                                            <a <?php echo ($catSlug == $catSideRow->slug) ? 'style="font-weight:bold;"' : ''; ?> href="<?php echo siteUrl . $genderSideBar . '/0-' . $superParentCat->slug . '/1-' . $parentCat->slug . '/2-' . $catSideRow->slug . '/' . $urlExtra; ?>/"><?php echo $catSideRow->category_name; ?></a>
+                                                                            <a <?php echo ($catSlug == $catSideRow->slug) ? 'style="font-weight:bold;"' : ''; ?> 
+                                                                            href="<?php echo siteUrl . $genderSideBar . '/0-' 
+                                                                            . $superParentCat->slug . '/1-' 
+                                                                            . $parentCat->slug . '/2-' 
+                                                                            . $catSideRow->slug . '/' 
+                                                                            . $urlExtra; ?>/">
+                                                                            <?php echo $catSideRow->category_name; ?></a>
                                                                         </li>
                                                                     <?php }?>
                                                                 </ul>
@@ -841,7 +851,7 @@ if (isset($promoCats) && $promoCats != '') {
 
                     var noProChange = $('#noOfProductOnCategoryPage').val();
                     $.get('<?php echo siteUrl; ?>autoload_process.php', {
-                        'limit1': noProChange, 'limit2': no, 'tag': tag,
+                        'limit1': isset(noProChange) ? noProChange : 0, 'limit2': no, 'tag': tag,
                         'gender': gender, 'cat': cat, 'brands': brands, 'price': price, 'sortId': sortId,
                         'searchText': searchText, 'searchTextId': searchTextId, 'searchTextType': searchTextType, 'searchTextData': searchTextData
                     }, function(data) {

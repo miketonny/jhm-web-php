@@ -26,25 +26,7 @@
 	<h4><a href="<?php echo siteUrl; ?>detail/<?php echo $row->product_id; ?>HXYK<?php echo $row->slug; ?>TZS1YL<?php echo $row->color_id; ?>">
 		<?php echo $row->brand_name.' '.$row->product_name ; ?>
     </a></h4>
-	 
-<!--	<h3>$<?php 
-//$price = $row->product_price;
-//	if($promoType != '' && $promoValue != ''){
-//		$promotionId = $promoArr['promo_id'];
-//		if($promoType == 'percent'){ $disPrice = $price - (($price * $promoValue) / 100); $discount=str_replace('.00', '',$promoValue).'% <br/> Off';  }
-//		elseif($promoType == 'amount'){ $disPrice = $price - $promoValue; $discount='Save $'.$promoValue; }
-//		echo formatCurrency($disPrice); ?> <strong>$<?php echo formatCurrency($price); ?></strong> <span class="discount"><?php echo $discount; ?></span><?php
-//	}else{
-//		//echo round($row->product_price, 2);
-//		echo formatCurrency($row->product_price);
-//		$disPrice = 0;
-//		$promotionId = 0;
-//	}
-        ?>
-	</h3>-->
 	<h3>$<?php $price = $row->product_price;
-//        echo "<pre>";
-//        print_r($row);
 	if($promoType != '' && $promoValue != ''){
 		$promotionId = $promoArr['promo_id'];
 		if($promoType == 'percent'){

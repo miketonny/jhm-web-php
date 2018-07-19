@@ -7,6 +7,7 @@
 <?php chkParam($_GET['alias'], siteUrl);
 $proData = explode('HXYK', $_GET['alias']);
 $id = $proData[0];
+if (!isset($proData[1])) { die; }
 $proData1 = explode('TZS1YL', $proData[1]);
 $alias = $proData1[0];
 $colorId = $proData1[1];
