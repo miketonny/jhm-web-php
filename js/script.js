@@ -380,6 +380,12 @@ $(document).ready(function() {
 	$("#find").click(function(){
   		$("#geocomplete").trigger("geocode");
 	});
+
+	//disable order button when its clicked
+	$('#chkoutForm').on('submit', function () {
+      var ordBtn = $('#order-btn');
+      ordBtn.prop('disabled', true).text('Ordering...');
+  });
 });
 
 function doProcess(data1, data2, data3){

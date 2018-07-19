@@ -1,15 +1,19 @@
 <?php 
-include 'include/config.php';
-include 'include/functions.php';
+include 'include/config.php'; 
+include 'include/functions.php'; 
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); 
 }
-function getStatus(){
+
+
+echo getStatus($con);
+
+function getStatus($con){
     //request to server
     //payplus credentials
-    $bizID = 29;
-    $intToken = 'gpI3wXspE49xfYXUmmIoz9xRjEOxXzzVwPGDOsxDzuGFAa4xnM9X8dUceWCVQPTc'; 
+    $bizID = 8093;
+    $intToken = 'mBjNui40sisiMvFGPSUl8oLO06rcOkKmBT0wzmcTkTnT697IvzdxR1eMRX0hx7pp'; 
     $time = time();
     $otn = $_SESSION['otn'];
     $nonce = substr(md5(microtime()),rand(0,26),16);; //16 random chars
@@ -36,17 +40,20 @@ function getStatus(){
     if($res['result_code'] == 'SUCCESS'){
         //check if status paid or not and return status
         if($res['state'] === 'SUCCESS'){
-            return updateOrderStats($res['transaction_id'], $res['total_fee']);
+            return updateOrderStats($res['transaction_id'], $res['total_fee'], $con);
+        }else{
+            return $res['state']; 
         }
-        return $res['state']; 
+       
     }else{
         return 'error';
     }
 }
 
 //TODO: update order status, clear cart etc.
-function updateOrderStats($tranId, $total_fee){
+function updateOrderStats($tranId, $total_fee, $con){
         if(!isset($_SESSION['orderId'])) return;
+        if(isset($_SESSION['paymentstatus']) && $_SESSION['paymentstatus'] == 'paid') return 'SUCCESS';
         $orderId = $_SESSION['orderId'];
         $boID = isset($_SESSION['backOrderId']) ? $_SESSION['backOrderId'] : 0; 
         $order = mysqli_fetch_object(mysqli_query($con, "select * from `tbl_order` WHERE order_id = '".$orderId."'"));
@@ -73,6 +80,7 @@ function updateOrderStats($tranId, $total_fee){
             $delCart = mysqli_query($con, "DELETE FROM tbl_cart WHERE user_id = '".$order->user_id."'"); 
             // $token = fetchRandomToken();
             // redirect(siteUrl.'success/'.$token.$orderId); die(); //now return to order success page and finish
+            $_SESSION['paymentstatus'] = "paid"; //set session data to prevent futher processing
             return "SUCCESS";
         }
         else{
@@ -80,6 +88,5 @@ function updateOrderStats($tranId, $total_fee){
         }
 }
 
-echo getStatus();
  
 ?>
