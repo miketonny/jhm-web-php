@@ -93,7 +93,7 @@ RewriteRule shipping shipping.php
 RewriteRule paymentProcess paymentProcess.php
 
 RewriteRule mywish wishlist.php
-RewriteRule my my.php
+#RewriteRule my my.php
 
 RewriteRule ^success/([\w-]+) success.php?ordId=$1
 RewriteRule ^paypalSucc/([\w-]+) paypalSucc.php?ordId=$1
