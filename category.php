@@ -243,7 +243,8 @@ $totalProducts = mysqli_num_rows(mysqli_query($con, $product_q));
 // get number
 $limitNo = getNoOfProductOnCategoryPage($con);
 //echo $product_q." LIMIT 0, $limitNo";
-$product_rs = mysqli_query($con, $product_q . " LIMIT 0, $limitNo");
+// $product_rs = mysqli_query($con, $product_q . " LIMIT 0, $limitNo");
+$product_rs = mysqli_query($con, $product_q);
 ?>
 <div class="clearfix"></div>
 
@@ -409,7 +410,12 @@ if (isset($genderSideBar) && $genderSideBar != '') {
 		$cat_rs = exec_query("SELECT category_name, category_id, slug FROM tbl_category WHERE is_activate = 0 and category_id IN (" . $condition . ") Order By category_name", $con);
 		while ($cat_row = mysqli_fetch_object($cat_rs)) {
 			?>
-            <h3 style="background:transparent;border:none;"><a id="subCatRef" href="<?php echo siteUrl; ?>product-search?cat_id=<?php echo $cat_row->category_id ?> " onclick="gotoURL(this);"><?php echo $cat_row->category_name; ?></a></h3>
+            <h3 style="background:transparent;border:none;">
+                <a id="subCatRef" href="<?php echo siteUrl; ?>product-search?cat_id=<?php echo $cat_row->category_id ?> " onclick="gotoURL(this);"><?php echo $cat_row->category_name; ?>
+                </a>
+                <!-- <span id="subCatRef"><?php echo $cat_row->category_name; ?>
+                </span> -->
+            </h3>
             <div style="border:none;background:transparent;min-height:0;padding-top:0;">
             <?php
             $cId = isset($catID) ? $catID : 0;
@@ -644,7 +650,7 @@ if ($brand_available == "false") {
                             <div class="col-sm-6 shortby">
                                 <select id="sort" onchange="$('#sortId').val(this.value);generateUrl();" class="selectpicker">
                                     <option value=""> Sort by </option>
-                                    <option value="datAsc"> What's NEW ! </option>
+                                    <option value="datAsc"> what's new </option>
                                     <option value="priDesc"> Price: High to Low </option>
                                     <option value="priAsc"> Price: Low to High </option>
                                 </select>

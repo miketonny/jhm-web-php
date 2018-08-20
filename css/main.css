@@ -984,7 +984,7 @@ background-color:#a1a1a1;
 #scrollbox3 {
     overflow: auto;
    /* width:px;*/
-    height: 250px;
+    height: 300px;
     padding: 0 5px; padding-right:0px !important; width:100% !important;
 }
 

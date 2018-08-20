@@ -133,6 +133,7 @@ if(isset($prefData->columns)){
             <button type="button" class="btn btn-purple btn-xs" onclick="multiPublish('unpublish');">Unpublish</button>
             <button type="button" class="btn btn-purple btn-xs" onclick="multiPromote('promote');">Promote</button>
             <button type="button" class="btn btn-purple btn-xs" onclick="multiPromote('unpromote');">Unpromote</button>
+            <button type="button" class="btn btn-purple btn-xs" onclick="multiPublish('delete');">Delete</button>
             <small>Select Product and Press Publish</small>
             
             <br/>
@@ -494,17 +495,22 @@ function multiPublish(type){
 	});
 	if(obj != ''){
 		if(type == 'unpublish'){
-			if(confirm('Do you want to Unpublish this Products?')){
+			if(confirm('Do you want to Unpublish these Products?')){
 				$.get('change_status.php', {'table' : 'tbl_product', 'pk_column' : 'product_id', 'pk_val' : obj, 'up_column' : 'is_activate', 'up_val' : 0, 'multi' : true}, function(data){ alert(data); location.reload(); });
 			}
 		}
 		else if(type == 'publish'){
-			if(confirm('Do you want to Publish this Products?')){
+			if(confirm('Do you want to Publish these Products?')){
 				$.get('change_status.php', {'table' : 'tbl_product', 'pk_column' : 'product_id', 'pk_val' : obj, 'up_column' : 'is_activate', 'up_val' : 1, 'multi' : true}, function(data){ alert(data); location.reload(); });
 			}
 		}
+        else if(type == 'delete') {
+            if(confirm('Do you want to Delete these Products?')){
+				$.get('change_status.php', {'table' : 'tbl_product', 'pk_column' : 'product_id', 'pk_val' : obj, 'up_column' : 'is_activate', 'up_val' : 4, 'multi' : true}, function(data){ alert(data); location.reload(); });
+			}
+        }
 	}
-	else{ alert('Please Select atleast one Product!'); }
+	else{ alert('Please select at least one product.'); }
 }
 
 function multiPromote(type){
