@@ -73,7 +73,7 @@
 				</ul>
 			</li>
 			<?php }if($productPerm[0]){
-			if($pagee == 'product.php' || $pagee == 'productAdd.php' || $pagee == 'productAddDesc.php' || $pagee == 'productAddDetail.php' || $pagee == 'productEdit.php'){ $csss1 = 'active'; $csss2 = 'style="display:block;"'; }
+			if($pagee == 'product.php' || $pagee == 'productAdd.php' || $pagee == 'productAddDesc.php' || $pagee == 'productAddDetail.php' || $pagee == 'productEdit.php' || $pagee == 'productStockUpdates.php' || $pagee == 'productAddBulk.php'){ $csss1 = 'active'; $csss2 = 'style="display:block;"'; }
 			else{ $csss1 = ''; $csss2 = ''; }
 			?>
 			<li class="has-submenu <?php echo $csss1; ?>"><a href="#"><i class="fa fa-heart-o"></i> <span class="nav-label">Product</span></a>
@@ -82,7 +82,9 @@
                     	<li><a href="product.php">All Products</a></li>
                     <?php }if($productPerm['add']){ ?>
 						<li><a href="productAdd.php">Add New Product</a></li>
+                        <li><a href="productAddBulk.php">Add Products Bulk</a></li>
                     <?php } ?>
+                    <li><a href="productStockUpdates.php">Stock Updates</a></li>
 				</ul>
 			</li>
 			<?php }if($promotionPerm[0]){
