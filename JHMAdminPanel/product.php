@@ -134,6 +134,18 @@ if(isset($prefData->columns)){
             <button type="button" class="btn btn-purple btn-xs" onclick="multiPromote('promote');">Promote</button>
             <button type="button" class="btn btn-purple btn-xs" onclick="multiPromote('unpromote');">Unpromote</button>
             <button type="button" class="btn btn-purple btn-xs" onclick="multiPublish('delete');">Delete</button>
+            <?php
+                /**
+                * @turturkeykey - added export button
+                */
+            ?>
+            <button type="button" class="btn btn-purple btn-xs" onclick="exportSelected('export');">Export CSV</button>
+            <?php
+                /**
+                * @turturkeykey - added upload button
+                */
+            ?>
+            <button type="button" class="btn btn-purple btn-xs" data-toggle="modal" data-target="#modal-upload" data-keyboard="false" data-backdrop="static">Bulk Update Stocks</button>
             <small>Select Product and Press Publish</small>
             
             <br/>
@@ -351,7 +363,7 @@ if(isset($prefData->columns)){
                                     $cat = getCategory(array('category_name'), $scat->superparent_id, $con);
                                     $strr .= ($strr == '')?'':'<br/>'; $strr .= $cat->category_name.' <b>></b> '.$scat->category_name.' <b>></b> '.$sscat->category_name;
                                 }
-                              
+
                             }
                         }
                         /*if($strr == ''){ //if no category is theree continue; }*/
@@ -533,7 +545,7 @@ function multiPromote(type){
             }
         }
     }
-    else{ alert('Please Select atleast one Product!'); }
+    else{ alert('Please Select at least one Product!'); }
 }
 
 function chkAll(){
@@ -558,7 +570,7 @@ function chkAll(){
 
 /////////////////////////////////////////////////////////////////////////////////// for filtert
 function getSubCategory(id){
-	ids = getSelOpt(id);
+	var ids = getSelOpt(id);
 	$.get('adminAjax.php', {'action' : 'getSubCategory', 'data1' : ids, 'mul' : 'mul', 'dataTempId' : '3fda701a15a12ded0c3e1d46d0f2158b.cloud'}, function(data){
 		$('#sub_category1').html(data);
 		$('#sub_category').html('<option value="">SELECT SUBCATEGORY</option>'+data);
@@ -570,7 +582,7 @@ function getSubCategory(id){
 	});
 }
 function getSubSubCategory(id){
-	ids = getSelOpt(id);
+	var ids = getSelOpt(id);
 	$.get('adminAjax.php', {'action' : 'getSubSubCategory', 'data1' : ids, 'mul' : 'mul', 'dataTempId' : '3fda701a25541656728de7d809dfgc21.cloud'}, function(data){
 		$('#subsub_category').html(data);
 		$('#subsub_category').html('<option value="">SELECT SUB SUB CATEGORY</option>'+data);
@@ -584,6 +596,27 @@ function getSubSubCategory(id){
 function hideshow(){
 	if($('#filterProducts').css('display') == 'block'){ $('#filterProducts').css('display', 'none'); }
 	else{ $('#filterProducts').css('display', 'block'); }
+}
+<?php
+/**
+ * @turturkeykey - added export function
+ */
+?>
+function exportSelected() {
+    var obj = '';
+    $('#chkPro input[type=checkbox]:checked').each(function() {
+        if(this.value !== ''){
+            if (obj === ''){ obj = this.value; }
+            else{ obj = obj+','+this.value; }
+        }
+    });
+    if(obj === '') {
+        alert('Please select at least one product.');
+        return;
+    }
+    if(confirm('Proceed with export (will open a new window)?')){
+        window.open('./export.php?ids=' + obj);
+    }
 }
 </script>
 <script type="text/javascript" src="assets/js/js.js"></script>
@@ -643,5 +676,32 @@ function hideshow(){
 	</div>
 </div>
 <!-- preference popup end -->
+<!-- upload popup start -->
+<form action="./productUpdateStock.php" method="POST" enctype="multipart/form-data">
+<div class="modal fade" id="modal-upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Upload CSV file</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">File: </label>
+                    <div class="col-sm-5">
+                        <input type="file" name="csv">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Upload now!</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<!-- upload popup end -->
 </body>
 </html>
