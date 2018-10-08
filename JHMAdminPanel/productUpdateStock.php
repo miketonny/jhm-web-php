@@ -5,6 +5,9 @@
  * @expectedFileFormat csv
  */
 
+ini_set('display_errors', 'on');
+error_reporting(E_ALL);
+
 
 if(empty($_FILES))
     die('No file');
@@ -47,13 +50,15 @@ foreach($products as $product) {
         $product['upc']
     );
     $stmtProduct->execute();
-    $item = $stmtProduct->get_result()->fetch_assoc();
-    if(empty($item))
+    $stmtProduct->bind_result($product_id, $qty);
+
+    if(!$stmtProduct->fetch())
         continue;
-    $qty = $item['qty'];
-    $product_id = $item['product_id'];
+
     $stmtProduct->free_result();
+
     if($qty !== (int)$product['qty']) {
+
         $stmt->bind_param(
             'is',
             $product['qty'],
