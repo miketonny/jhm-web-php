@@ -60,8 +60,12 @@
         // color statement
         $colorStmt = $con->prepare("INSERT INTO `tbl_product_color` (`product_id`, `color_code`) VALUES(?, ?)");
         // price statement
-        $priceStmt = $con->prepare("INSERT INTO `tbl_product_price` (`product_id`, `product_upc`, `product_price`, `qty`, `color_id`) 
-                                                                    VALUES (?, ?, ?, ?, ?)");
+//        $priceStmt = $con->prepare("INSERT INTO `tbl_product_price`
+//                                                  (`product_id`, `product_upc`, `product_price`, `qty`, `color_id`)
+//                                           VALUES (?, ?, ?, ?, ?)");
+        $priceStmt = $con->prepare("INSERT INTO `tbl_product_price` 
+                                                  (`product_id`, `product_upc`, `product_price`, `qty`, `color_id`, `cost`, `product_rrp`, `isDiscount`, `discount_start_date`, `discount_end_date`, `is_activate`, `backorder_qty`) 
+                                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         // image statement
         $imageStmt = $con->prepare("INSERT INTO `tbl_product_media` (`product_id`, `color_id`, `media_type`, `media_src`, `media_thumb`, `is_main`, `is_activate`) 
                                                                      VALUES(?, ?, 'img', ?, ?, ?, 0)");
@@ -141,16 +145,31 @@
                 $errors[] = $con->error;
             }
             $color_id = $con->insert_id;
+            $cost = 0.00;
+            $product_rrp = 0.00;
+            $isDiscount = $is_activate = $backorder_qty = 0;
+            $discount_start_date = $discount_end_date = '0000-00-00';
             // create price association
             $priceStmt->bind_param(
-                'isdii',
+                'isdiiddissii',
                 $product_id,
                 $product['upc'],
                 $product['price'],
                 $product['qty'],
-                $color_id
+                $color_id,
+                $cost,
+                $product_rrp,
+                $isDiscount,
+                $discount_start_date,
+                $discount_end_date,
+                $is_activate,
+                $backorder_qty
             );
-            $priceStmt->execute();
+            if(!$priceStmt->execute()) {
+                echo 'price error ' . $con->error;
+                $errors[] = $con->error;
+                die();
+            }
             // create media association
             if(!empty($product['images'])) {
                 $images = explode(';', $product['images']);
@@ -174,9 +193,8 @@
             }
             $added ++;
         }
-    var_dump($added, $failed, $errors);die();
         // processing completed
-        setMessage('The uploaded file is not compatible with this importer!', 'alert alert-error');
+        setMessage($added . ' products were added successfully!', 'alert alert-success');
         header('Location: product.php');
         exit;
     }
