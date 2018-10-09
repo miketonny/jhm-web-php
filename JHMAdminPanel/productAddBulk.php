@@ -93,7 +93,7 @@
             $size = '20 ML';
             $manufacturer_code = $weight = $tag = '';
             $height = $width = $promotion_state = 0;
-            $sku = $con->query("SELECT MAX(CAST(`product_sku` AS UNSIGNED)) + 1 AS `sku` FROM `tbl_product`")->fetch_assoc()['sku'];
+            $sku = $con->query("SELECT MAX(CAST(`product_id` AS UNSIGNED)) + 1 AS `sku` FROM `tbl_product`")->fetch_assoc()['sku'];
             $productStmt->bind_param(
                 'iisssssssiiissssiisiiii',
                 $category_id,
