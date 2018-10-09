@@ -2,7 +2,7 @@
     if(!empty($_FILES['csv'])) {
 
         // replace the 63 with the id of the temp brand
-        define('TEMP_BRAND_ID', 63);
+        define('TEMP_BRAND_ID', 227);
 
         include '../include/config.php';
         include '../include/function.php';

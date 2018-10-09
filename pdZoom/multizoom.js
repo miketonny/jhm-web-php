@@ -34,7 +34,7 @@ jQuery.noConflict();
 			}
 			$(new Image()).error(function(){
 				if(lnk.tagName && !options.notmulti){
-					alert("Error: I couldn't find the image:\n\n" + lnk.href + ((lnkt = lnk.getAttribute('data-title'))? '\n\n"' + lnkt + '"' : ''));
+					console.log("Error: I couldn't find the image:\n\n" + lnk.href + ((lnkt = lnk.getAttribute('data-title'))? '\n\n"' + lnkt + '"' : ''));
 					if((lnko = $imgObj.data('last-trigger'))){
 						first = true;
 						$(lnko).trigger('click');
