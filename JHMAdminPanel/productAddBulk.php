@@ -178,7 +178,7 @@
             if(!empty($product['images']) && 0+(int)$product['images'] > 0) {
                 for($i = 0; $i < $product['images']; $i++) {
                     $mainImage = $i === 0;
-                    $imageName = $product['upc'] . ($mainImage ? '' : '-' . ($i + 1)) . '.jpg';
+                    $imageName = $product['upc'] . ($mainImage ? '' : '-' . $i) . '.jpg';
                     $imageStmt->bind_param(
                         'iissi',
                         $product_id,
