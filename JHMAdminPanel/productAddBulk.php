@@ -1,5 +1,9 @@
 <?php
     if(!empty($_FILES['csv'])) {
+
+        // replace the 63 with the id of the temp brand
+        define('TEMP_BRAND_ID', 63);
+
         include '../include/config.php';
         include '../include/function.php';
 
@@ -83,7 +87,7 @@
             $category_id = !empty($product['sub_sub_category']) ? $product['sub_sub_category'] : (!empty($product['sub_category']) ? $product['sub_category'] : $product['category']);
             $is_activate = 2;
             $temp_subcategory = $category_id;
-            $brand_id = 63;
+            $brand_id = TEMP_BRAND_ID;
             $user_group = 'male,female';
             $age_group = '5-15,15-25,25-40,40-55,above 55';
             $size = '20 ML';
@@ -171,12 +175,10 @@
                 die();
             }
             // create media association
-            if(!empty($product['images'])) {
-                $images = explode(';', $product['images']);
-                foreach($images as $image) {
-                    $test = explode(':', $image);
-                    $mainImage = count($test) - 1;
-                    $imageName = $mainImage ? $test[1] : $test[0];
+            if(!empty($product['images']) && 0+(int)$product['images'] > 0) {
+                for($i = 0; $i < $product['images']; $i++) {
+                    $mainImage = $i === 0;
+                    $imageName = $product['upc'] . ($mainImage ? '' : '-' . ($i + 1)) . '.jpg';
                     $imageStmt->bind_param(
                         'iissi',
                         $product_id,
