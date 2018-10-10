@@ -99,7 +99,7 @@
                 $category_id,
                 $brand_id,
                 $product['name'],
-                $product['description'],
+                $product['usage'],
                 $product['description'], // summary
                 $slug,
                 $user_group, // user group
