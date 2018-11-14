@@ -10,9 +10,9 @@ define('siteName', 'JHM Shop');
 define('siteUrl', '/jhm/'); 
 define('siteSecureUrl', '');
 /* contact email (may be used in email or contact page) */
-define('contactEmail', 'info@pixlbrick.in');
+define('contactEmail', 'miketonny@gmail.com');
 /* paypal email id */
-define('paypalId', 'pixl.pawan@gmail.com');
+define('paypalId', 'miketonny@gmail.com');
 /* site language */
 define('siteLang', 'English');
 /* no of p[roduct in 1 group , on category page */
